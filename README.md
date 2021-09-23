@@ -1,29 +1,11 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Projeto do curso de Desenvolvimento de Sistemas do SENAI São José, onde será feito o sistema web para o corpo de bombeiros para o acompanhamento do vencimento das mangueiras e válvulas de gás.
 
-### What is this repository for? ###
+O sistema será uma continuação do projeto anterior, que foi um aplicativo móvel.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Integrantes do Grupo ###
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Leonardo Nascimento
+* Leonardo Schmidt
+* Martin Ferreira
