@@ -8,6 +8,7 @@ import { TelaLoginComponent } from './tela-login/tela-login.component';
 import { TelaHomeComponent } from './tela-home/tela-home.component';
 import { ComponenteMenuComponent } from './componente-menu/componente-menu.component';
 import { TelaRelatoriosComponent } from './tela-relatorios/tela-relatorios.component';
+import { TelaUsuarioComponent } from './tela-usuario/tela-usuario.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TelaRelatoriosComponent } from './tela-relatorios/tela-relatorios.compo
     TelaLoginComponent,
     TelaHomeComponent,
     ComponenteMenuComponent,
-    TelaRelatoriosComponent
+    TelaRelatoriosComponent,
+    TelaUsuarioComponent
   ],
   imports: [
     BrowserModule,
