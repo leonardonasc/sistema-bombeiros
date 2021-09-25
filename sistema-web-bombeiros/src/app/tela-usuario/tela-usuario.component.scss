@@ -24,7 +24,7 @@
   width: 60vw;
 }
 
-.container-2, .container-3 {
+.container-2, .container-3, .container-4 {
   display: flex;
   justify-content: space-between;
 }
@@ -35,7 +35,8 @@
 }
 
 .input-usuarios {
-  width: calc(100% - 80px);
+  // width: calc(100% - 80px);
+  width: 100%;
 }
 
 .campos-form {
@@ -82,4 +83,33 @@
   background-color: #a3a3a3;
 }
 
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
 
+.example-right-align {
+  text-align: right;
+}
+
+// input.example-right-align::-webkit-outer-spin-button,
+// input.example-right-align::-webkit-inner-spin-button {
+//   display: none;
+// }
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.demo-table {
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}

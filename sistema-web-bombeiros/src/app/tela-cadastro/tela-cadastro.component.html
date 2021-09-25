@@ -4,59 +4,97 @@
     <div class="header">
       <h1>Cadastro de Moradores</h1>
     </div>
-  <div class="container-box">
+    <div class="container-box">
 
-    <div class="container-1">
-      <div class="campos-form">
-        <label for="nomeCompleto" class="label-sm">Nome:</label>
-        <input type="text" class="input-moradores" id="nomeCompleto" placeholder="Nome Completo">
+      <div class="container-1">
+        <div class="campos-form">
+          <!-- <label for="nomeCompleto" class="label-sm">Nome:</label>
+        <input type="text" class="input-moradores" id="nomeCompleto" placeholder="Nome Completo"> -->
+          <mat-form-field class="input-moradores" appearance="fill">
+            <mat-label>Nome Completo</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="campos-form">
+          <!-- <label for="endereco" class="label-sm">Endereço:</label>
+        <input type="text" class="input-moradores" id="endereco" placeholder="Endereço"> -->
+          <mat-form-field class="input-moradores" appearance="fill">
+            <mat-label>Endereço</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="campos-form">
-        <label for="endereco" class="label-sm">Endereço:</label>
-        <input type="text" class="input-moradores" id="endereco" placeholder="Endereço">
-      </div>
-    </div>
 
-    <!-- container 2 -->
-    <div class="container-2">
-      <div class="campos-form">
-        <label for="telefone" class="label-sm">Telefone:</label>
-        <input type="text" class="" id="telefone" placeholder="Telefone">
+      <!-- container 2 -->
+      <div class="container-2">
+        <div class="campos-form">
+          <!-- <label for="telefone" class="label-sm">Telefone:</label>
+        <input type="text" class="" id="telefone" placeholder="Telefone"> -->
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Telefone</mat-label>
+            <span matPrefix>+55 &nbsp;</span>
+            <input type="tel" matInput placeholder="99999-9999">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="campos-form">
+          <!-- <label for="numMoradores" class="label-lg">Núm. Moradores: </label>
+        <input type="text" class="" id="numMoradores" placeholder="Núm. Moradores"> -->
+          <mat-form-field class="input-usuarios" appearance="fill">
+            <mat-label>Núm. Moradores</mat-label>
+            <input matInput type="number">
+          </mat-form-field>
+        </div>
       </div>
-      <div class="campos-form">
-        <label for="numMoradores" class="label-lg">Núm. Moradores: </label>
-        <input type="text" class="" id="numMoradores" placeholder="Núm. Moradores">
-      </div>
-    </div>
 
-    <!-- container 3 -->
-    <div class="container-3">
-      <div class="campos-form">
-        <label for="tipo" class="label-sm">Tipo:</label>
-        <select name="tipo" id="">
+      <!-- container 3 -->
+      <div class="container-3">
+        <div class="campos-form">
+          <!-- <label for="tipo" class="label-sm">Tipo:</label>
+        <select endereco="tipo" id="">
           <option value="" default selected>Escolha uma opção</option>
           <option value="1">Comercial</option>
           <option value="2">Residencial</option>
-        </select>
-      </div>
-      <div class="campos-form">
-        <label for="tem-botijao" class="label-lg">Tem botijão?</label>
-        <select name="" id="tem-botijao">
+        </select> -->
+          <mat-form-field appearance="fill">
+            <mat-label>Tipo de Edificação</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                {{tipo.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="campos-form">
+          <!-- <label for="tem-botijao" class="label-lg">Tem botijão?</label>
+        <select endereco="" id="tem-botijao">
           <option value="" defaultSelected></option>
           <option value="1">Não</option>
           <option value="2">Sim</option>
-        </select>
+        </select> -->
+          <mat-form-field appearance="fill">
+            <mat-label>Tem botijão?</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let botijao of botijoes" [value]="botijao.value">
+                {{botijao.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="campos-form">
+          <!-- <label for="quantidade-botijao" class="label-sm">Quantidade: </label>
+        <input type="number" id="quantidade-botijao"> -->
+          <mat-form-field class="input-usuarios" appearance="fill">
+            <mat-label>Qtd. Botijão</mat-label>
+            <input matInput type="number">
+          </mat-form-field>
+        </div>
       </div>
-      <div class="campos-form">
-        <label for="quantidade-botijao" class="label-sm">Quantidade: </label>
-        <input type="number" id="quantidade-botijao">
+      <div class="div-button">
+        <button class="btn btn-danger">Cadastrar</button>
       </div>
-    </div>
-    <div class="div-button">
-      <button class="btn btn-danger">Cadastrar</button>
     </div>
   </div>
-</div>
 
   <!-- Pesquisa de Moradores -->
   <div class="relacao-moradores">
@@ -68,7 +106,7 @@
         <img src="../../assets/icone-pesquisa.png" alt="" width="24px"> Pesquisar
       </span>
     </div>
-    <table class="table table-striped">
+    <!-- <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">Nome Completo</th>
@@ -109,8 +147,56 @@
           <td></td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+      <!-- Nome Column -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let element">{{element.nome}}</td>
+      </ng-container>
 
+      <!-- endereco Column -->
+      <ng-container matColumnDef="endereco">
+        <th mat-header-cell *matHeaderCellDef>Endereco</th>
+        <td mat-cell *matCellDef="let element">{{element.endereco}}</td>
+      </ng-container>
+
+      <!-- telefone Column -->
+      <ng-container matColumnDef="telefone">
+        <th mat-header-cell *matHeaderCellDef>Telefone</th>
+        <td mat-cell *matCellDef="let element">{{element.telefone}}</td>
+      </ng-container>
+
+      <!-- numMoradores Column -->
+      <ng-container matColumnDef="numMoradores">
+        <th mat-header-cell *matHeaderCellDef>Núm. Moradores</th>
+        <td mat-cell *matCellDef="let element">{{element.numMoradores}}</td>
+      </ng-container>
+
+      <!-- tipoEdificacao Column -->
+      <ng-container matColumnDef="tipoEdificacao">
+        <th mat-header-cell *matHeaderCellDef>Tipo de Edificação</th>
+        <td mat-cell *matCellDef="let element">{{element.tipoEdificacao}}</td>
+      </ng-container>
+
+      <!-- numMoradores Column -->
+      <ng-container matColumnDef="temBotijao">
+        <th mat-header-cell *matHeaderCellDef>Tem botijão?</th>
+        <td mat-cell *matCellDef="let element">{{element.temBotijao}}</td>
+      </ng-container>
+
+      <!-- numMoradores Column -->
+      <ng-container matColumnDef="qtdBotijao">
+        <th mat-header-cell *matHeaderCellDef>Qtd. Botijão</th>
+        <td mat-cell *matCellDef="let element">{{element.qtdBotijao}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
+      [showFirstLastButtons]="showFirstLastButtons" [pageIndex]="pageIndex" aria-label="Select page">
+    </mat-paginator>
   </div>
 </div>
 

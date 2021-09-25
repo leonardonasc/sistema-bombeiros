@@ -9,6 +9,16 @@ import { TelaHomeComponent } from './tela-home/tela-home.component';
 import { ComponenteMenuComponent } from './componente-menu/componente-menu.component';
 import { TelaRelatoriosComponent } from './tela-relatorios/tela-relatorios.component';
 import { TelaUsuarioComponent } from './tela-usuario/tela-usuario.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator'
+
 
 @NgModule({
   declarations: [
@@ -22,7 +32,16 @@ import { TelaUsuarioComponent } from './tela-usuario/tela-usuario.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
