@@ -12,4 +12,6 @@ export class TelaCadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  i!: number;
+
 }
