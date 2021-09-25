@@ -35,7 +35,7 @@
 }
 
 .input-moradores {
-  width: 90%;
+  width: calc(100% - 80px);
 }
 
 .campos-form {
@@ -43,8 +43,8 @@
   margin-bottom: 15px;
 }
 
-.campos-form label {
-  width: 80px;
+.campos-form .label-sm {
+  width: 80px !important;
   margin-right: 5px;
 }
 
@@ -60,6 +60,7 @@
 .relacao-moradores {
   display: flex;
   flex-direction: column;
+  width: 60vw;
 }
 
 .table {
