@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {path: "", component: TelaLoginComponent},
   {path: "", component: ComponenteMenuComponent,
     children: [
       {path: 'home', component: TelaHomeComponent},
@@ -17,7 +18,6 @@ const routes: Routes = [
       {path: 'logout', component: TelaLoginComponent}
     ]
   },
-  {path: "", component: TelaLoginComponent},
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,10 +15,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator'
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -33,15 +33,15 @@ import {MatPaginatorModule} from '@angular/material/paginator'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule,
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

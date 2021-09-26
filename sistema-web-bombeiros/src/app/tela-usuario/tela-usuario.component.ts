@@ -12,12 +12,13 @@ export interface CadastroUsuarios {
   nome: string;
   matricula: number;
   nomeDeGuerra: string;
+  email: string;
   perfilAcesso: string;
 
 }
 
 const ELEMENT_DATA: CadastroUsuarios[] = [
-  {nome: 'Fulano', matricula: 99999, nomeDeGuerra: 'Sargento Fulano', perfilAcesso: 'Monitoramento'},
+  {nome: 'Fulano', matricula: 99999, nomeDeGuerra: 'Sargento Fulano', email:'fulano@bombeiros.com',  perfilAcesso: 'Monitoramento'},
 ];
 
 @Component({
@@ -26,18 +27,34 @@ const ELEMENT_DATA: CadastroUsuarios[] = [
   styleUrls: ['./tela-usuario.component.scss']
 })
 export class TelaUsuarioComponent implements OnInit {
-  displayedColumns: string[] = ['nome', 'matricula', 'nomeDeGuerra', 'perfilAcesso'];
-  // dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['nome', 'matricula', 'nomeDeGuerra', 'email', 'perfilAcesso'];
   dataSource = new MatTableDataSource<CadastroUsuarios>(ELEMENT_DATA);
   clickedRows = new Set<CadastroUsuarios>();
 
-  hide = true;
-
+  nome!: string;
+  matricula!: number;
+  nomeDeGuerra!: string;
+  senha: string = "";
+  confirmacaoSenha: string = "";
+  email!: string;
   perfis: Perfil[] = [
     {value: 'admin-0', viewValue: 'Administrador'},
     {value: 'cobom-1', viewValue: 'Cobom'},
     {value: 'monitoramento-2', viewValue: 'Monitoramento'}
   ];
+
+  cadastrar() {
+    if(this.senha != this.confirmacaoSenha) {
+      alert("As senhas não coincidem!")
+    } else if (this.senha == "" && this.confirmacaoSenha == "") {
+      alert("Os campos de senha devem ser preenchidos.")
+    } else {
+      alert("Usuário cadastrado com sucesso.")
+    }
+  }
+
+  hide = true;
+
 
   constructor() { }
 
@@ -61,5 +78,6 @@ export class TelaUsuarioComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
   }
+
 
 }
