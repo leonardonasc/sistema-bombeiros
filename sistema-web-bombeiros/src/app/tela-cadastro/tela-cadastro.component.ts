@@ -70,5 +70,4 @@ export class TelaCadastroComponent implements OnInit {
   ];
 
 
-
 }

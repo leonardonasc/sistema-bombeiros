@@ -18,7 +18,7 @@ export interface CadastroUsuarios {
 }
 
 const ELEMENT_DATA: CadastroUsuarios[] = [
-  {nome: 'Fulano', matricula: 99999, nomeDeGuerra: 'Sargento Fulano', email:'fulano@bombeiros.com',  perfilAcesso: 'Monitoramento'},
+  {nome: 'Fulano Ciclano Beltrano', matricula: 99999, nomeDeGuerra: 'Sgt. Beltrano', email:'fulano@bombeiros.com',  perfilAcesso: 'Monitoramento'},
 ];
 
 @Component({
