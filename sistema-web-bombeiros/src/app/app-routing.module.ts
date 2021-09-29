@@ -15,7 +15,7 @@ const routes: Routes = [
       {path: 'cadastro', component: TelaCadastroComponent},
       {path: 'usuario', component: TelaUsuarioComponent},
       {path: 'relatorio', component: TelaRelatoriosComponent},
-      {path: 'logout', component: TelaLoginComponent}
+      {path: 'logout', component: TelaLoginComponent},
     ]
   },
 ];

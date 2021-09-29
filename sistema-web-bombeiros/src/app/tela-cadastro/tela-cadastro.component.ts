@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 // import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -39,6 +40,18 @@ export class TelaCadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  formGroup = new FormGroup({
+    nomeCompleto: new FormControl('', [Validators.required]),
+    endereco: new FormControl('', [Validators.required]),
+    telefone: new FormControl('', [Validators.required]),
+    numMoradores: new FormControl('', [Validators.required]),
+    tipoEdificacao: new FormControl('', [Validators.required]),
+    objeto: new FormControl('', [Validators.required]),
+    validade: new FormControl('', [Validators.required]),
+    temBotijao: new FormControl('', [Validators.required]),
+    qtdBotijao: new FormControl(''),
+  });
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -67,6 +80,11 @@ export class TelaCadastroComponent implements OnInit {
   botijoes: Tipo[] = [
     {value: 'nao-0', viewValue: 'Não'},
     {value: 'sim-1', viewValue: 'Sim'},
+  ];
+
+  objetos: Tipo[] = [
+    {value: 'mangueira', viewValue: 'Mangueira'},
+    {value: 'valvula', viewValue: 'Válvula'},
   ];
 
 

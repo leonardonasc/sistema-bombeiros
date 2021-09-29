@@ -1,3 +1,4 @@
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 // import {MatPaginator} from '@angular/material/paginator';
@@ -30,6 +31,16 @@ export class TelaUsuarioComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'matricula', 'nomeDeGuerra', 'email', 'perfilAcesso'];
   dataSource = new MatTableDataSource<CadastroUsuarios>(ELEMENT_DATA);
   clickedRows = new Set<CadastroUsuarios>();
+
+  formGroup = new FormGroup({
+    nomeCompleto: new FormControl('', [Validators.required]),
+    matricula: new FormControl('', [Validators.required]),
+    nomeDeGuerra: new FormControl(''),
+    senha: new FormControl('', [Validators.minLength(6), Validators.required]),
+    confirmacaoSenha: new FormControl('', [Validators.minLength(6), Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    perfilAcesso: new FormControl('', [Validators.required]),
+  });
 
   nome!: string;
   matricula!: number;

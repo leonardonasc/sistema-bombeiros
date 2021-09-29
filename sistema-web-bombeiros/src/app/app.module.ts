@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 @NgModule({
@@ -28,12 +32,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     TelaHomeComponent,
     ComponenteMenuComponent,
     TelaRelatoriosComponent,
-    TelaUsuarioComponent
+    TelaUsuarioComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
@@ -42,6 +47,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
