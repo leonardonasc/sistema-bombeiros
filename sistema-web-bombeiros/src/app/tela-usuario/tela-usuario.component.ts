@@ -3,6 +3,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 // import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { nomeCompleto } from '../common/validators';
 
 interface Perfil {
   value: string;
@@ -33,7 +34,7 @@ export class TelaUsuarioComponent implements OnInit {
   clickedRows = new Set<CadastroUsuarios>();
 
   formGroup = new FormGroup({
-    nomeCompleto: new FormControl('', [Validators.required]),
+    nomeCompleto: new FormControl('', [Validators.required, nomeCompleto()]),
     matricula: new FormControl('', [Validators.required]),
     nomeDeGuerra: new FormControl(''),
     senha: new FormControl('', [Validators.minLength(6), Validators.required]),
@@ -42,12 +43,6 @@ export class TelaUsuarioComponent implements OnInit {
     perfilAcesso: new FormControl('', [Validators.required]),
   });
 
-  nome!: string;
-  matricula!: number;
-  nomeDeGuerra!: string;
-  senha: string = "";
-  confirmacaoSenha: string = "";
-  email!: string;
   perfis: Perfil[] = [
     {value: 'admin-0', viewValue: 'Administrador'},
     {value: 'cobom-1', viewValue: 'Cobom'},
@@ -55,12 +50,13 @@ export class TelaUsuarioComponent implements OnInit {
   ];
 
   cadastrar() {
-    if(this.senha != this.confirmacaoSenha) {
+    if(this.formGroup.value.senha != this.formGroup.value.confirmacaoSenha) {
       alert("As senhas não coincidem!")
-    } else if (this.senha == "" && this.confirmacaoSenha == "") {
+    } else if (this.formGroup.value.senha == "" && this.formGroup.value.confirmacaoSenha == "") {
       alert("Os campos de senha devem ser preenchidos.")
-    } else {
+    } else if (this.formGroup.valid){
       alert("Usuário cadastrado com sucesso.")
+      console.log(this.formGroup.value);
     }
   }
 

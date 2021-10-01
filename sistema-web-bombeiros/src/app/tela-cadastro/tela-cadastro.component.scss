@@ -99,3 +99,11 @@
 .input-campos {
   width: 200px;
 }
+
+.objetos, .cadastro {
+  padding-top: 20px;
+}
+.campos-objeto {
+  display: flex;
+  justify-content: space-around;
+}

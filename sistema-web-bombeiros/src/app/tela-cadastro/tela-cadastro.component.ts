@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 // import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { nomeCompleto } from '../common/validators';
 
 interface Tipo {
   value: string;
@@ -34,6 +35,7 @@ export class TelaCadastroComponent implements OnInit {
   // dataSource = ELEMENT_DATA;
   dataSource = new MatTableDataSource<CadastroMoradores>(ELEMENT_DATA);
   clickedRows = new Set<CadastroMoradores>();
+  serializedDate = new FormControl((new Date()).toISOString());
 
   constructor() { }
 
@@ -41,7 +43,7 @@ export class TelaCadastroComponent implements OnInit {
   }
 
   formGroup = new FormGroup({
-    nomeCompleto: new FormControl('', [Validators.required]),
+    nomeCompleto: new FormControl('', [Validators.required, nomeCompleto()]),
     endereco: new FormControl('', [Validators.required]),
     telefone: new FormControl('', [Validators.required]),
     numMoradores: new FormControl('', [Validators.required]),
@@ -50,6 +52,12 @@ export class TelaCadastroComponent implements OnInit {
     validade: new FormControl('', [Validators.required]),
     temBotijao: new FormControl('', [Validators.required]),
     qtdBotijao: new FormControl(''),
+    marcaMangueira: new FormControl(''),
+    modeloMangueira: new FormControl(''),
+    validadeMangueira: new FormControl(''),
+    marcaValvula: new FormControl(''),
+    modeloValvula: new FormControl(''),
+    validadeValvula: new FormControl(''),
   });
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -86,6 +94,5 @@ export class TelaCadastroComponent implements OnInit {
     {value: 'mangueira', viewValue: 'Mangueira'},
     {value: 'valvula', viewValue: 'Válvula'},
   ];
-
 
 }
