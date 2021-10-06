@@ -1,19 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@800&display=swap');
 
+@media screen and (max-height: 799px) {
+  .container-moradores {
+    height: 750px;
+    padding-top: 100px;
+  }
+}
+@media screen and (min-height: 800px) {
+  .container-moradores {
+    height: 850px;
+    padding-top: 50px;
+  }
+}
+
 .container-moradores {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: calc(100vw - 200px);
-  height: 100vh;
   font-family: 'Barlow', sans-serif;
-  padding-top: 50px;
   background-color: #E8E8E8;
   justify-content: space-around;
 }
 
 .header {
-  height: 100px;
+  height: 50px;
 }
 
 .header h1 {
@@ -24,7 +35,7 @@
   width: 60vw;
 }
 
-.container-2, .container-3 {
+.container-2, .container-3, .container-4, .container-5, .container-6 {
   display: flex;
   justify-content: space-between;
 }
@@ -40,7 +51,6 @@
 
 .campos-form {
   display: flex;
-  margin-bottom: 15px;
 }
 
 .campos-form .label-sm {
@@ -105,5 +115,9 @@
 }
 .campos-objeto {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.valvula {
+  justify-content: center;
 }

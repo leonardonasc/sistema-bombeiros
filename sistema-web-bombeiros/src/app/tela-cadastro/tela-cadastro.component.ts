@@ -22,6 +22,13 @@ export interface CadastroMoradores {
 
 const ELEMENT_DATA: CadastroMoradores[] = [
   {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
+  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
+  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
+  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
+  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
+  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
+  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
+  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
 ];
 
 
@@ -44,20 +51,35 @@ export class TelaCadastroComponent implements OnInit {
 
   formGroup = new FormGroup({
     nomeCompleto: new FormControl('', [Validators.required, nomeCompleto()]),
+    cep: new FormControl('', [Validators.required]),
     endereco: new FormControl('', [Validators.required]),
-    telefone: new FormControl('', [Validators.required]),
+    numero: new FormControl('', [Validators.required]),
+    bairro: new FormControl('', [Validators.required]),
+    cidade: new FormControl('', [Validators.required]),
+    telefone1: new FormControl('', [Validators.required]),
+    telefone2: new FormControl('', [Validators.required]),
+    cpf: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     numMoradores: new FormControl('', [Validators.required]),
     tipoEdificacao: new FormControl('', [Validators.required]),
     objeto: new FormControl('', [Validators.required]),
     validade: new FormControl('', [Validators.required]),
     temBotijao: new FormControl('', [Validators.required]),
     qtdBotijao: new FormControl(''),
-    marcaMangueira: new FormControl(''),
+    tamanhoMangueira: new FormControl(''),
     modeloMangueira: new FormControl(''),
     validadeMangueira: new FormControl(''),
-    marcaValvula: new FormControl(''),
-    modeloValvula: new FormControl(''),
     validadeValvula: new FormControl(''),
+    validadeHidrante: new FormControl(''),
+    numeroPatrimonio: new FormControl(''),
+    ultimoTeste: new FormControl(''),
+    statusAtividade: new FormControl(''),
+    validadeExtintor: new FormControl(''),
+    modeloExtintor: new FormControl(''),
+    seloInmetro: new FormControl(''),
+    pesoExtintor: new FormControl(''),
+    anoExpecao: new FormControl(''),
+
   });
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -86,6 +108,11 @@ export class TelaCadastroComponent implements OnInit {
   ];
 
   botijoes: Tipo[] = [
+    {value: 'nao-0', viewValue: 'Não'},
+    {value: 'sim-1', viewValue: 'Sim'},
+  ];
+
+  selosInmetro: Tipo[] = [
     {value: 'nao-0', viewValue: 'Não'},
     {value: 'sim-1', viewValue: 'Sim'},
   ];
