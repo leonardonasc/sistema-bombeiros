@@ -149,7 +149,6 @@
                       <mat-form-field class="input-campos" appearance="fill">
                         <mat-label>Qtd. Botijão</mat-label>
                         <input matInput type="number" formControlName="qtdBotijao">
-                        <!-- <mat-error *ngIf="formGroup.controls.qtdBotijao.invalid">Insira uma quantidade</mat-error> -->
                       </mat-form-field>
                     </div>
                   </div>
@@ -170,14 +169,20 @@
                       <input matInput [matDatepicker]="picker" formControlName="validadeMangueira">
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-datepicker #picker></mat-datepicker>
+                      <mat-error *ngIf="formGroup.controls.validadeMangueira.invalid">Preencha uma data válida
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-campos">
                       <mat-label>Modelo</mat-label>
                       <input matInput type="text" formControlName="modeloMangueira">
+                      <mat-error *ngIf="formGroup.controls.modeloMangueira.invalid">Preencha o modelo da mangueira
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-campos">
                       <mat-label>Tamanho</mat-label>
                       <input matInput type="text" formControlName="tamanhoMangueira">
+                      <mat-error *ngIf="formGroup.controls.tamanhoMangueira.invalid">Preencha o tamanho da mangueira
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </div>
@@ -191,6 +196,8 @@
                       <input matInput [matDatepicker]="picker1" formControlName="validadeValvula">
                       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                       <mat-datepicker #picker1></mat-datepicker>
+                      <mat-error *ngIf="formGroup.controls.validadeValvula.invalid">Preencha uma data válida
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </div>
@@ -204,10 +211,18 @@
                       <input matInput [matDatepicker]="picker2" formControlName="validadeExtintor">
                       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                       <mat-datepicker #picker2></mat-datepicker>
+                      <mat-error *ngIf="formGroup.controls.validadeExtintor.invalid">Preencha uma data válida
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-campos">
                       <mat-label>Modelo</mat-label>
-                      <input matInput type="text" formControlName="modeloExtintor">
+                      <mat-select formControlName="modeloExtintor">
+                        <mat-option *ngFor="let modelo of modelosExtintor" [value]="modelo.value">
+                          {{modelo.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="formGroup.controls.modeloExtintor.invalid">Selecione o modelo do extintor
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-campos">
                       <mat-label>Possui Selo Inmetro</mat-label>
@@ -222,10 +237,14 @@
                     <mat-form-field appearance="fill" class="input-campos">
                       <mat-label>Peso</mat-label>
                       <input matInput type="text" formControlName="pesoExtintor">
+                      <mat-error *ngIf="formGroup.controls.pesoExtintor.invalid">Preencha o peso do extintor
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-campos">
                       <mat-label>Ano Inspeção</mat-label>
                       <input matInput type="text" formControlName="anoExpecao">
+                      <mat-error *ngIf="formGroup.controls.pesoExtintor.invalid">Preencha o ano de expedição do extintor
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </div>
@@ -239,20 +258,30 @@
                       <input matInput [matDatepicker]="picker3" formControlName="validadeHidrante">
                       <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                       <mat-datepicker #picker3></mat-datepicker>
+                      <mat-error *ngIf="formGroup.controls.validadeHidrante.invalid">Selecione a validade do hidrante
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-campos">
                       <mat-label>Número Patrimonio</mat-label>
                       <input matInput type="text" formControlName="numeroPatrimonio">
+                      <mat-error *ngIf="formGroup.controls.numeroPatrimonio.invalid">Preencha o número de patrimônio.
+                      </mat-error>
                     </mat-form-field>
                   </div>
                   <div class="campos-objeto">
                     <mat-form-field appearance="fill" class="input-campos">
-                      <mat-label>Data do último teste</mat-label>
-                      <input matInput type="text" formControlName="ultimoTeste">
+                      <mat-label>Data do ultimo teste</mat-label>
+                      <input matInput [matDatepicker]="picker4" formControlName="ultimoTeste">
+                      <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                      <mat-datepicker #picker4></mat-datepicker>
+                      <mat-error *ngIf="formGroup.controls.ultimoTeste.invalid">Selecione a data de último teste do hidrante
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-campos">
                       <mat-label>Status Atividade</mat-label>
                       <input matInput type="text" formControlName="statusAtividade">
+                      <mat-error *ngIf="formGroup.controls.statusAtividade.invalid">Preencha o status da atividade
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </div>

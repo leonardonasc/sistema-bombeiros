@@ -39,7 +39,6 @@ const ELEMENT_DATA: CadastroMoradores[] = [
 })
 export class TelaCadastroComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'endereco', 'telefone', 'numMoradores', 'tipoEdificacao', 'temBotijao', 'qtdBotijao'];
-  // dataSource = ELEMENT_DATA;
   dataSource = new MatTableDataSource<CadastroMoradores>(ELEMENT_DATA);
   clickedRows = new Set<CadastroMoradores>();
   serializedDate = new FormControl((new Date()).toISOString());
@@ -66,19 +65,19 @@ export class TelaCadastroComponent implements OnInit {
     validade: new FormControl('', [Validators.required]),
     temBotijao: new FormControl('', [Validators.required]),
     qtdBotijao: new FormControl(''),
-    tamanhoMangueira: new FormControl(''),
-    modeloMangueira: new FormControl(''),
-    validadeMangueira: new FormControl(''),
-    validadeValvula: new FormControl(''),
-    validadeHidrante: new FormControl(''),
-    numeroPatrimonio: new FormControl(''),
-    ultimoTeste: new FormControl(''),
-    statusAtividade: new FormControl(''),
-    validadeExtintor: new FormControl(''),
-    modeloExtintor: new FormControl(''),
-    seloInmetro: new FormControl(''),
-    pesoExtintor: new FormControl(''),
-    anoExpecao: new FormControl(''),
+    tamanhoMangueira: new FormControl('', [Validators.required]),
+    modeloMangueira: new FormControl('', [Validators.required]),
+    validadeMangueira: new FormControl('', [Validators.required]),
+    validadeValvula: new FormControl('', [Validators.required]),
+    validadeHidrante: new FormControl('', [Validators.required]),
+    numeroPatrimonio: new FormControl('', [Validators.required]),
+    ultimoTeste: new FormControl('', [Validators.required]),
+    statusAtividade: new FormControl('', [Validators.required]),
+    validadeExtintor: new FormControl('', [Validators.required]),
+    modeloExtintor: new FormControl('', [Validators.required]),
+    seloInmetro: new FormControl('', [Validators.required]),
+    pesoExtintor: new FormControl('', [Validators.required]),
+    anoExpecao: new FormControl('', [Validators.required, Validators.minLength(4)]),
 
   });
 
@@ -120,6 +119,17 @@ export class TelaCadastroComponent implements OnInit {
   objetos: Tipo[] = [
     {value: 'mangueira', viewValue: 'Mangueira'},
     {value: 'valvula', viewValue: 'Válvula'},
+  ];
+
+  modelosExtintor: Tipo[] = [
+    {value: 'ext-0', viewValue: 'Água'},
+    {value: 'ext-1', viewValue: 'Espuma Mecânica'},
+    {value: 'ext-2', viewValue: 'Dióxido de Carbono (CO2)'},
+    {value: 'ext-3', viewValue: 'Pó Químico ABC'},
+    {value: 'ext-4', viewValue: 'Pó Químico BC'},
+    {value: 'ext-5', viewValue: 'Halogenados (Halon)'},
+    {value: 'ext-6', viewValue: 'Classe D'},
+    {value: 'ext-7', viewValue: 'Classe K'},
   ];
 
 }

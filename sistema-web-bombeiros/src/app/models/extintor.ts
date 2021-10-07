@@ -1,6 +1,8 @@
 export interface Extintor {
-    dataValidade: string;
-    modelo: string;
-    seloInmetro: string;
-    peso: number;
+  id?: number;
+  dataValidade: string;
+  modelo: string;
+  seloInmetro: string;
+  peso: number;
+  anoInspecao: string;
 }
