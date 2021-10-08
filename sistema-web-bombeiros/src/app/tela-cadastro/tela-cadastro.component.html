@@ -69,7 +69,10 @@
                     <div class="campos-form">
                       <mat-form-field class="input-campos" appearance="fill">
                         <mat-label>CEP</mat-label>
-                        <input matInput formControlName="endereco">
+                        <input matInput formControlName="cep" >
+                        <button mat-icon-button matSuffix (click)="getEnderecoPeloCep()">
+                          <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+                        </button>
                         <mat-error *ngIf="formGroup.controls.cep.invalid">Preencha o CEP corretamente
                         </mat-error>
                       </mat-form-field>
@@ -85,7 +88,7 @@
                     <div class="campos-form">
                       <mat-form-field class="input-campos" appearance="fill">
                         <mat-label>Número</mat-label>
-                        <input matInput formControlName="endereco">
+                        <input matInput formControlName="numero">
                         <mat-error *ngIf="formGroup.controls.numero.invalid">Informe o número correto
                         </mat-error>
                       </mat-form-field>
@@ -97,7 +100,7 @@
                     <div class="campos-form">
                       <mat-form-field class="input-campos" appearance="fill">
                         <mat-label>Bairro</mat-label>
-                        <input matInput formControlName="endereco">
+                        <input matInput formControlName="bairro">
                         <mat-error *ngIf="formGroup.controls.bairro.invalid">Preencha o nome do bairro corretamente
                         </mat-error>
                       </mat-form-field>
@@ -105,7 +108,7 @@
                     <div class="campos-form">
                       <mat-form-field class="input-campos" appearance="fill">
                         <mat-label>Cidade</mat-label>
-                        <input matInput formControlName="endereco">
+                        <input matInput formControlName="cidade">
                         <mat-error *ngIf="formGroup.controls.cidade.invalid">Preencha com uma cidade válida
                         </mat-error>
                       </mat-form-field>

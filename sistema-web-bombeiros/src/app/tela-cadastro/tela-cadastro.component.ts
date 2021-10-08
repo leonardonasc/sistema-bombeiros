@@ -4,6 +4,7 @@ import { PageEvent, MatPaginator } from '@angular/material/paginator';
 // import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { nomeCompleto } from '../common/validators';
+import { ViacepService } from '../services/viacep.service';
 
 interface Tipo {
   value: string;
@@ -21,32 +22,103 @@ export interface CadastroMoradores {
 }
 
 const ELEMENT_DATA: CadastroMoradores[] = [
-  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
-  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
-  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
-  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
-  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
-  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
-  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
-  {nome: 'Fulano', endereco: 'Rua Qualquer, 32', telefone: 5548991919199, numMoradores: 4, tipoEdificacao: 'Residencial', temBotijao: 'Sim', qtdBotijao: 1},
+  {
+    nome: 'Fulano',
+    endereco: 'Rua Qualquer, 32',
+    telefone: 5548991919199,
+    numMoradores: 4,
+    tipoEdificacao: 'Residencial',
+    temBotijao: 'Sim',
+    qtdBotijao: 1,
+  },
+  {
+    nome: 'Fulano',
+    endereco: 'Rua Qualquer, 32',
+    telefone: 5548991919199,
+    numMoradores: 4,
+    tipoEdificacao: 'Residencial',
+    temBotijao: 'Sim',
+    qtdBotijao: 1,
+  },
+  {
+    nome: 'Fulano',
+    endereco: 'Rua Qualquer, 32',
+    telefone: 5548991919199,
+    numMoradores: 4,
+    tipoEdificacao: 'Residencial',
+    temBotijao: 'Sim',
+    qtdBotijao: 1,
+  },
+  {
+    nome: 'Fulano',
+    endereco: 'Rua Qualquer, 32',
+    telefone: 5548991919199,
+    numMoradores: 4,
+    tipoEdificacao: 'Residencial',
+    temBotijao: 'Sim',
+    qtdBotijao: 1,
+  },
+  {
+    nome: 'Fulano',
+    endereco: 'Rua Qualquer, 32',
+    telefone: 5548991919199,
+    numMoradores: 4,
+    tipoEdificacao: 'Residencial',
+    temBotijao: 'Sim',
+    qtdBotijao: 1,
+  },
+  {
+    nome: 'Fulano',
+    endereco: 'Rua Qualquer, 32',
+    telefone: 5548991919199,
+    numMoradores: 4,
+    tipoEdificacao: 'Residencial',
+    temBotijao: 'Sim',
+    qtdBotijao: 1,
+  },
+  {
+    nome: 'Fulano',
+    endereco: 'Rua Qualquer, 32',
+    telefone: 5548991919199,
+    numMoradores: 4,
+    tipoEdificacao: 'Residencial',
+    temBotijao: 'Sim',
+    qtdBotijao: 1,
+  },
+  {
+    nome: 'Fulano',
+    endereco: 'Rua Qualquer, 32',
+    telefone: 5548991919199,
+    numMoradores: 4,
+    tipoEdificacao: 'Residencial',
+    temBotijao: 'Sim',
+    qtdBotijao: 1,
+  },
 ];
-
 
 @Component({
   selector: 'app-tela-cadastro',
   templateUrl: './tela-cadastro.component.html',
-  styleUrls: ['./tela-cadastro.component.scss']
+  styleUrls: ['./tela-cadastro.component.scss'],
 })
 export class TelaCadastroComponent implements OnInit {
-  displayedColumns: string[] = ['nome', 'endereco', 'telefone', 'numMoradores', 'tipoEdificacao', 'temBotijao', 'qtdBotijao'];
+  displayedColumns: string[] = [
+    'nome',
+    'endereco',
+    'telefone',
+    'numMoradores',
+    'tipoEdificacao',
+    'temBotijao',
+    'qtdBotijao',
+  ];
   dataSource = new MatTableDataSource<CadastroMoradores>(ELEMENT_DATA);
   clickedRows = new Set<CadastroMoradores>();
-  serializedDate = new FormControl((new Date()).toISOString());
+  serializedDate = new FormControl(new Date().toISOString());
+  cep: string = "";
 
-  constructor() { }
+  constructor(private cepService: ViacepService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   formGroup = new FormGroup({
     nomeCompleto: new FormControl('', [Validators.required, nomeCompleto()]),
@@ -77,9 +149,18 @@ export class TelaCadastroComponent implements OnInit {
     modeloExtintor: new FormControl('', [Validators.required]),
     seloInmetro: new FormControl('', [Validators.required]),
     pesoExtintor: new FormControl('', [Validators.required]),
-    anoExpecao: new FormControl('', [Validators.required, Validators.minLength(4)]),
-
+    anoExpecao: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
   });
+
+  async getEnderecoPeloCep() {
+    const endereco = await this.cepService.read(this.formGroup.value.cep);
+    this.formGroup.controls.endereco.setValue(endereco.logradouro);
+    this.formGroup.controls.bairro.setValue(endereco.bairro);
+    this.formGroup.controls.cidade.setValue(endereco.localidade);
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -90,7 +171,6 @@ export class TelaCadastroComponent implements OnInit {
   length = 500;
   pageSize = 4;
   pageIndex = 0;
-  // pageSizeOptions = [3,4,5];
   showFirstLastButtons = true;
 
   handlePageEvent(event: PageEvent) {
@@ -102,34 +182,33 @@ export class TelaCadastroComponent implements OnInit {
   i!: number;
 
   tipos: Tipo[] = [
-    {value: 'comercial-0', viewValue: 'Comercial'},
-    {value: 'residencial-1', viewValue: 'Residencial'},
+    { value: 'comercial-0', viewValue: 'Comercial' },
+    { value: 'residencial-1', viewValue: 'Residencial' },
   ];
 
   botijoes: Tipo[] = [
-    {value: 'nao-0', viewValue: 'Não'},
-    {value: 'sim-1', viewValue: 'Sim'},
+    { value: 'nao-0', viewValue: 'Não' },
+    { value: 'sim-1', viewValue: 'Sim' },
   ];
 
   selosInmetro: Tipo[] = [
-    {value: 'nao-0', viewValue: 'Não'},
-    {value: 'sim-1', viewValue: 'Sim'},
+    { value: 'nao-0', viewValue: 'Não' },
+    { value: 'sim-1', viewValue: 'Sim' },
   ];
 
   objetos: Tipo[] = [
-    {value: 'mangueira', viewValue: 'Mangueira'},
-    {value: 'valvula', viewValue: 'Válvula'},
+    { value: 'mangueira', viewValue: 'Mangueira' },
+    { value: 'valvula', viewValue: 'Válvula' },
   ];
 
   modelosExtintor: Tipo[] = [
-    {value: 'ext-0', viewValue: 'Água'},
-    {value: 'ext-1', viewValue: 'Espuma Mecânica'},
-    {value: 'ext-2', viewValue: 'Dióxido de Carbono (CO2)'},
-    {value: 'ext-3', viewValue: 'Pó Químico ABC'},
-    {value: 'ext-4', viewValue: 'Pó Químico BC'},
-    {value: 'ext-5', viewValue: 'Halogenados (Halon)'},
-    {value: 'ext-6', viewValue: 'Classe D'},
-    {value: 'ext-7', viewValue: 'Classe K'},
+    { value: 'ext-0', viewValue: 'Água' },
+    { value: 'ext-1', viewValue: 'Espuma Mecânica' },
+    { value: 'ext-2', viewValue: 'Dióxido de Carbono (CO2)' },
+    { value: 'ext-3', viewValue: 'Pó Químico ABC' },
+    { value: 'ext-4', viewValue: 'Pó Químico BC' },
+    { value: 'ext-5', viewValue: 'Halogenados (Halon)' },
+    { value: 'ext-6', viewValue: 'Classe D' },
+    { value: 'ext-7', viewValue: 'Classe K' },
   ];
-
 }

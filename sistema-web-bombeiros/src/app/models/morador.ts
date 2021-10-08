@@ -1,5 +1,5 @@
 export interface Morador {
-  id: number;
+  id?: number;
   nome: string;
   endereco: string;
   telefone: string;
