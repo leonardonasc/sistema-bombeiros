@@ -23,6 +23,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BombeirosComponent } from './bombeiros/bombeiros.component';
+import { MapaApiComponent } from './mapa-api/mapa-api.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { BombeirosComponent } from './bombeiros/bombeiros.component';
     TelaRelatoriosComponent,
     TelaUsuarioComponent,
     BombeirosComponent,
+    MapaApiComponent,
   ],
   imports: [
     BrowserModule,

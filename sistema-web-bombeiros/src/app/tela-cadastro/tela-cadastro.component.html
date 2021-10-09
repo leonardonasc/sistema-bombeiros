@@ -24,8 +24,8 @@
                     <div class="campos-form">
                       <mat-form-field appearance="fill" class="input-campos">
                         <mat-label>CPF</mat-label>
-                        <input matInput type="email" formControlName="email">
-                        <mat-error *ngIf="formGroup.controls.cpf.invalid">E-mail inválido</mat-error>
+                        <input matInput type="email" formControlName="cpf">
+                        <mat-error *ngIf="formGroup.controls.cpf.invalid">CPF inválido</mat-error>
                       </mat-form-field>
                     </div>
                     <div class="campos-form">
@@ -70,7 +70,7 @@
                       <mat-form-field class="input-campos" appearance="fill">
                         <mat-label>CEP</mat-label>
                         <input matInput formControlName="cep" >
-                        <button mat-icon-button matSuffix (click)="getEnderecoPeloCep()">
+                        <button mat-icon-button matSuffix type="button" (click)="getEnderecoPeloCep()">
                           <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
                         </button>
                         <mat-error *ngIf="formGroup.controls.cep.invalid">Preencha o CEP corretamente
@@ -89,7 +89,7 @@
                       <mat-form-field class="input-campos" appearance="fill">
                         <mat-label>Número</mat-label>
                         <input matInput formControlName="numero">
-                        <mat-error *ngIf="formGroup.controls.numero.invalid">Informe o número correto
+                        <mat-error *ngIf="formGroup.controls.numero.invalid && clicado">Informe o número correto
                         </mat-error>
                       </mat-form-field>
                     </div>
@@ -148,6 +148,8 @@
                         </mat-select>
                       </mat-form-field>
                     </div>
+                  </div>
+                  <div class="container-6">
                     <div class="campos-form" *ngIf="formGroup.value.temBotijao == 'sim-1'">
                       <mat-form-field class="input-campos" appearance="fill">
                         <mat-label>Qtd. Botijão</mat-label>
@@ -293,7 +295,7 @@
           </mat-tab>
         </mat-tab-group>
         <div class="div-button">
-          <button class="btn btn-danger">Cadastrar</button>
+          <button class="btn btn-danger" (click)="criarUsuario()">Cadastrar</button>
         </div>
       </form>
     </div>

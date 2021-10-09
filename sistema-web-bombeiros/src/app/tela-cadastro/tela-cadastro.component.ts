@@ -115,6 +115,7 @@ export class TelaCadastroComponent implements OnInit {
   clickedRows = new Set<CadastroMoradores>();
   serializedDate = new FormControl(new Date().toISOString());
   cep: string = "";
+  clicado: boolean = false;
 
   constructor(private cepService: ViacepService) {}
 
@@ -128,8 +129,8 @@ export class TelaCadastroComponent implements OnInit {
     bairro: new FormControl('', [Validators.required]),
     cidade: new FormControl('', [Validators.required]),
     telefone1: new FormControl('', [Validators.required]),
-    telefone2: new FormControl('', [Validators.required]),
-    cpf: new FormControl('', [Validators.required]),
+    telefone2: new FormControl(''),
+    cpf: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     numMoradores: new FormControl('', [Validators.required]),
     tipoEdificacao: new FormControl('', [Validators.required]),
@@ -177,6 +178,10 @@ export class TelaCadastroComponent implements OnInit {
     this.length = event.length;
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
+  }
+
+  criarUsuario() {
+    this.clicado = true;
   }
 
   i!: number;
