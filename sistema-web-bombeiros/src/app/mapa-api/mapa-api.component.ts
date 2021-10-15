@@ -26,8 +26,7 @@ export class MapaApiComponent implements OnInit {
     this.ouvirClickMapa(map, cluster);
   }
 
-  async ngOnInit() {
-  }
+  async ngOnInit() {}
   private ouvirClickMapa(map: Map, cluster: any) {
     map.on('click', (evento) => {
       cluster.getFeatures(evento.pixel).then((clickedFeatures: any) => {
@@ -36,9 +35,11 @@ export class MapaApiComponent implements OnInit {
           const features = clickedFeatures[0].get('features');
           if (features.length > 1) {
             const extent = boundingExtent(
-              features.map((r:any) => r.getGeometry().getCoordinates())
+              features.map((r: any) => r.getGeometry().getCoordinates())
             );
-            map.getView().fit(extent, {duration: 1000, padding: [50, 50, 50, 50]});
+            map
+              .getView()
+              .fit(extent, { duration: 1000, padding: [50, 50, 50, 50] });
           }
         }
       });
@@ -49,15 +50,14 @@ export class MapaApiComponent implements OnInit {
       source: new XYZ({
         url: 'https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}&apistyle=s.t%3A1%7Cp.v%3Aon%2Cs.t%3A21%7Cs.e%3Al.i%7Cp.v%3Aon%2Cs.t%3A2%7Cp.v%3Aoff%2Cs.t%3A2%7Cs.e%3Al.i%7Cp.v%3Aoff%2Cs.t%3A33%7Cp.v%3Aoff%2Cs.t%3A33%7Cs.e%3Al.i%7Cp.v%3Aoff%2Cs.t%3A3%7Cs.e%3Al.i%7Cp.v%3Aoff%2Cs.t%3A51%7Cs.e%3Al.i%7Cp.v%3Aoff%2Cs.t%3A4%7Cp.v%3Aoff',
       }),
-      // source: new OSM()
     });
 
     const map = new Map({
       layers: [raster],
       target: 'map',
       view: new View({
-        center: Proj.fromLonLat([-48.6189166022498, -27.604759650923583]),
-        zoom: 15,
+        center: Proj.fromLonLat([-48.635454, -27.617852]),
+        zoom: 13.6,
       }),
     });
 
