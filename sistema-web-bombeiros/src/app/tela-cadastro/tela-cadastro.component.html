@@ -1,12 +1,9 @@
 <div class="div-mae">
-  <div class="container-moradores" style="overflow: auto">
-    <div>
-      <div class="header">
-        <h1>Cadastro de Moradores</h1>
-      </div>
+  <div class="container-moradores" >
+    <div class="div1">
       <div class="container-box">
         <form [formGroup]="formGroup">
-          <mat-tab-group mat-align-tabs="center" style="height: 420px;">
+          <mat-tab-group mat-align-tabs="center" style="height: 330px;">
             <mat-tab label="Cadastro">
               <mat-tab-group mat-align-tabs="center">
                 <mat-tab label="Informações Princiais">
@@ -164,7 +161,7 @@
             </mat-tab>
 
             <!-- Criação da aba de objetos -->
-            <mat-tab label="Objetos" style="height: 500px;">
+            <mat-tab label="Objetos">
               <mat-tab-group mat-align-tabs="center">
                 <!-- Mangueira -->
                 <mat-tab label="Mangueira">
@@ -298,71 +295,73 @@
             </mat-tab>
           </mat-tab-group>
           <div class="div-button">
-            <button class="btn btn-danger" (click)="criarUsuario()">Cadastrar</button>
+            <button class="btn btn-danger" (click)="getMoradores()">Cadastrar</button>
           </div>
         </form>
       </div>
     </div>
 
     <!-- Pesquisa de Moradores -->
-    <div class="relacao-moradores">
-      <div>
-        <h4>Moradores Cadastrados</h4>
+    <div class="div2">
+
+      <div class="relacao-moradores">
+        <div>
+          <h4>Moradores Cadastrados</h4>
+        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Filtro</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Digite um dado de pesquisa" #input>
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+          <!-- Nome Column -->
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <td mat-cell *matCellDef="let element">{{element.nome}}</td>
+          </ng-container>
+
+          <!-- endereco Column -->
+          <ng-container matColumnDef="endereco">
+            <th mat-header-cell *matHeaderCellDef>Endereco</th>
+            <td mat-cell *matCellDef="let element">{{element.endereco}}</td>
+          </ng-container>
+
+          <!-- telefone Column -->
+          <ng-container matColumnDef="telefone">
+            <th mat-header-cell *matHeaderCellDef>Telefone</th>
+            <td mat-cell *matCellDef="let element">{{element.telefone}}</td>
+          </ng-container>
+
+          <!-- numMoradores Column -->
+          <ng-container matColumnDef="numMoradores">
+            <th mat-header-cell *matHeaderCellDef>Núm. Moradores</th>
+            <td mat-cell *matCellDef="let element">{{element.numMoradores}}</td>
+          </ng-container>
+
+          <!-- tipoEdificacao Column -->
+          <ng-container matColumnDef="tipoEdificacao">
+            <th mat-header-cell *matHeaderCellDef>Tipo de Edificação</th>
+            <td mat-cell *matCellDef="let element">{{element.tipoEdificacao}}</td>
+          </ng-container>
+
+          <!-- numMoradores Column -->
+          <ng-container matColumnDef="temBotijao">
+            <th mat-header-cell *matHeaderCellDef>Tem botijão?</th>
+            <td mat-cell *matCellDef="let element">{{element.temBotijao}}</td>
+          </ng-container>
+
+          <!-- numMoradores Column -->
+          <ng-container matColumnDef="qtdBotijao">
+            <th mat-header-cell *matHeaderCellDef>Qtd. Botijão</th>
+            <td mat-cell *matCellDef="let element">{{element.qtdBotijao}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
+          [showFirstLastButtons]="showFirstLastButtons" [pageIndex]="pageIndex" aria-label="Select page">
+        </mat-paginator>
       </div>
-      <div class="search-button">
-        <span>
-          <img src="../../assets/icone-pesquisa.png" alt="" width="24px"> Pesquisar
-        </span>
-      </div>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-        <!-- Nome Column -->
-        <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef>Nome</th>
-          <td mat-cell *matCellDef="let element">{{element.nome}}</td>
-        </ng-container>
-
-        <!-- endereco Column -->
-        <ng-container matColumnDef="endereco">
-          <th mat-header-cell *matHeaderCellDef>Endereco</th>
-          <td mat-cell *matCellDef="let element">{{element.endereco}}</td>
-        </ng-container>
-
-        <!-- telefone Column -->
-        <ng-container matColumnDef="telefone">
-          <th mat-header-cell *matHeaderCellDef>Telefone</th>
-          <td mat-cell *matCellDef="let element">{{element.telefone}}</td>
-        </ng-container>
-
-        <!-- numMoradores Column -->
-        <ng-container matColumnDef="numMoradores">
-          <th mat-header-cell *matHeaderCellDef>Núm. Moradores</th>
-          <td mat-cell *matCellDef="let element">{{element.numMoradores}}</td>
-        </ng-container>
-
-        <!-- tipoEdificacao Column -->
-        <ng-container matColumnDef="tipoEdificacao">
-          <th mat-header-cell *matHeaderCellDef>Tipo de Edificação</th>
-          <td mat-cell *matCellDef="let element">{{element.tipoEdificacao}}</td>
-        </ng-container>
-
-        <!-- numMoradores Column -->
-        <ng-container matColumnDef="temBotijao">
-          <th mat-header-cell *matHeaderCellDef>Tem botijão?</th>
-          <td mat-cell *matCellDef="let element">{{element.temBotijao}}</td>
-        </ng-container>
-
-        <!-- numMoradores Column -->
-        <ng-container matColumnDef="qtdBotijao">
-          <th mat-header-cell *matHeaderCellDef>Qtd. Botijão</th>
-          <td mat-cell *matCellDef="let element">{{element.qtdBotijao}}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
-        [showFirstLastButtons]="showFirstLastButtons" [pageIndex]="pageIndex" aria-label="Select page">
-      </mat-paginator>
     </div>
   </div>
 </div>

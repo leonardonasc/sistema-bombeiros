@@ -2,15 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
 
-@media screen and (max-width: 540px) {
-  .menu-desktop {
-    display: none;
-  }
+// @media screen and (max-width: 540px) {
+//   .menu-desktop {
+//     display: none;
+//   }
 
-  .menu-mobile {
-    display: initial;
-  }
-}
+//   .menu-mobile {
+//     display: initial;
+//   }
+// }
 
 @media screen and (min-width: 541px) {
   .menu-desktop {
@@ -24,6 +24,7 @@
 
 .menu-mobile {
   height: 100vh;
+  display: none;
 }
 
 .menu-desktop {

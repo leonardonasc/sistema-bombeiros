@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class MoradoresService {
-  url: string = `${environment.urlApi}/moradores"`;
+  url: string = `${environment.urlApi}/moradores`;
 
   constructor(private http: HttpClient) {}
 
@@ -32,6 +32,6 @@ export class MoradoresService {
   }
 
   async list(): Promise<Morador[]> {
-    return this.http.get<Morador[]>(this.url).toPromise();
+    return this.http.get<Morador[]>(`${this.url}`).toPromise();
   }
 }

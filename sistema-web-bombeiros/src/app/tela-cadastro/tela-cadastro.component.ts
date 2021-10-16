@@ -1,3 +1,4 @@
+import { MoradoresService } from './../services/moradores.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
@@ -23,7 +24,7 @@ export interface CadastroMoradores {
 
 const ELEMENT_DATA: CadastroMoradores[] = [
   {
-    nome: 'Fulano',
+    nome: 'Leonardo Schmidt',
     endereco: 'Rua Qualquer, 32',
     telefone: 5548991919199,
     numMoradores: 4,
@@ -32,7 +33,7 @@ const ELEMENT_DATA: CadastroMoradores[] = [
     qtdBotijao: 1,
   },
   {
-    nome: 'Fulano',
+    nome: 'Leonardo Nascimento',
     endereco: 'Rua Qualquer, 32',
     telefone: 5548991919199,
     numMoradores: 4,
@@ -41,7 +42,7 @@ const ELEMENT_DATA: CadastroMoradores[] = [
     qtdBotijao: 1,
   },
   {
-    nome: 'Fulano',
+    nome: 'Martin Ferreira',
     endereco: 'Rua Qualquer, 32',
     telefone: 5548991919199,
     numMoradores: 4,
@@ -111,15 +112,23 @@ export class TelaCadastroComponent implements OnInit {
     'temBotijao',
     'qtdBotijao',
   ];
-  dataSource = new MatTableDataSource<CadastroMoradores>(ELEMENT_DATA);
   clickedRows = new Set<CadastroMoradores>();
   serializedDate = new FormControl(new Date().toISOString());
   cep: string = "";
   clicado: boolean = false;
+  moradores: any;
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor(private cepService: ViacepService) {}
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
-  ngOnInit(): void {}
+  constructor(private cepService: ViacepService, private moradoresService: MoradoresService) {}
+
+  ngOnInit() {
+    this.getMoradores();
+  }
 
   formGroup = new FormGroup({
     nomeCompleto: new FormControl('', [Validators.required, nomeCompleto()]),
@@ -163,10 +172,16 @@ export class TelaCadastroComponent implements OnInit {
     this.formGroup.controls.cidade.setValue(endereco.localidade);
   }
 
+  async getMoradores() {
+    this.moradores = await this.moradoresService.list();
+    console.log(this.moradores);
+  }
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+
   }
 
   length = 500;
