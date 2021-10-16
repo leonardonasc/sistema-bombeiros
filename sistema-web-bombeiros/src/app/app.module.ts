@@ -24,6 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BombeirosComponent } from './bombeiros/bombeiros.component';
 import { MapaApiComponent } from './mapa-api/mapa-api.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { MapaApiComponent } from './mapa-api/mapa-api.component';
     MatDatepickerModule,
     MatNativeDateModule,
     HttpClientModule,
+    MatSidenavModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],

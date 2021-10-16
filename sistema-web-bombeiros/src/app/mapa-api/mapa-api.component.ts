@@ -57,7 +57,7 @@ export class MapaApiComponent implements OnInit {
       target: 'map',
       view: new View({
         center: Proj.fromLonLat([-48.635454, -27.617852]),
-        zoom: 13.6,
+        zoom: 14,
       }),
     });
 
@@ -92,7 +92,7 @@ export class MapaApiComponent implements OnInit {
         if (!style) {
           style = new Style({
             image: new CircleStyle({
-              radius: 10,
+              radius: 15,
               stroke: new Stroke({
                 color: '#fff',
               }),

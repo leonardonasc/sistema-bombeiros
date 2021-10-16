@@ -1,7 +1,32 @@
 // @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
-.menu {
+
+@media screen and (max-width: 540px) {
+  .menu-desktop {
+    display: none;
+  }
+
+  .menu-mobile {
+    display: initial;
+  }
+}
+
+@media screen and (min-width: 541px) {
+  .menu-desktop {
+    display: initial;
+  }
+
+  .menu-mobile {
+    display: none;
+  }
+}
+
+.menu-mobile {
+  height: 100vh;
+}
+
+.menu-desktop {
   width: 200px;
   height: 100vh;
   font-family: 'Barlow', sans-serif;
@@ -26,11 +51,11 @@
   height: 200px;
 }
 
-.menu ul{
+.menu-desktop ul{
   padding: 0px;
 }
 
-.menu li {
+.menu-desktop li {
   list-style: none;
   list-style-type: none;
   margin: 0px 0px 15px 0px;
@@ -38,7 +63,7 @@
   height: 40px;
 }
 
-.menu li:hover {
+.menu-desktop li:hover {
   background-color: #a3a3a3;
 }
 
@@ -55,3 +80,10 @@
   background-color: rgb(222, 222, 222);
 }
 
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

@@ -1,19 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap");
 
 * {
   margin: 0;
 }
+
 @media screen and (max-width: 540px) {
   .box-login {
-   width: 300px;
- }
+    width: 300px;
+  }
 
- .form-control {
-  width: 200px;
-}
+  .form-control {
+    width: 200px;
+  }
 }
 
-@media screen and (min-width: 541px){
+@media screen and (min-width: 541px) {
   .box-login {
     width: 500px;
   }
@@ -30,14 +31,13 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #E8E8E8;
-  font-family: 'Barlow', sans-serif;
+  background-color: #e8e8e8;
+  font-family: "Barlow", sans-serif;
 }
 
 .form-control:focus {
   box-shadow: 0px 0px 5px 2px #cf112a9d;
 }
-
 
 .mb-3 {
   display: flex;
@@ -51,7 +51,7 @@
 }
 
 .botao-container a {
-  color: #CF112A;
+  color: #cf112a;
   margin-top: 15px;
 }
 
