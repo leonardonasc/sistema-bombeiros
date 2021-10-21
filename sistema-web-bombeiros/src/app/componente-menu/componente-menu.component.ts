@@ -5,10 +5,26 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './componente-menu.component.html',
   styleUrls: ['./componente-menu.component.scss']
 })
-export class ComponenteMenuComponent {
-  opened!: boolean;
+export class ComponenteMenuComponent implements OnInit {
+  classeMobile: String = "none";
+  classeDesktop: String = "";
+  classeBotao: String = "";
+  windowWidth = window.innerWidth;
 
   constructor() { }
 
+  ngOnInit() {
+    if(this.windowWidth <= 540) {
+      this.classeBotao = "absolute";
+      this.classeDesktop = "none";
+    } else {
+      this.classeBotao = "none";
+      this.classeDesktop = "initial";
+    }
+  }
+
+  abrirMenu() {
+
+  }
 
 }

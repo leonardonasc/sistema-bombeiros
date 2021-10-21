@@ -7,14 +7,12 @@ import { Usuario } from '../models/Usuario';
   providedIn: 'root',
 })
 export class UsuariosService {
-  url: string = `${environment.urlApi}/usuarios"`;
+  url: string = `${environment.urlApi}/usuarios`;
 
   constructor(private http: HttpClient) {}
 
   async create(usuario: Usuario): Promise<Usuario> {
-    return this.http
-      .post<Usuario>(this.url, usuario)
-      .toPromise();
+    return this.http.post<Usuario>(this.url, usuario).toPromise();
   }
 
   async read(id: number): Promise<Usuario> {
@@ -32,6 +30,6 @@ export class UsuariosService {
   }
 
   async list(): Promise<Usuario[]> {
-    return this.http.get<Usuario[]>(this.url).toPromise();
+    return this.http.get<Usuario[]>(`${this.url}`).toPromise();
   }
 }

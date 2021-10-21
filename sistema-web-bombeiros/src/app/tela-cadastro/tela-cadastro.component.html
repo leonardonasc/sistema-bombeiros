@@ -1,9 +1,9 @@
 <div class="div-mae">
-  <div class="container-moradores" >
+  <div class="container-moradores">
     <div class="div1">
       <div class="container-box">
         <form [formGroup]="formGroup">
-          <mat-tab-group mat-align-tabs="center" style="height: 330px;">
+          <mat-tab-group mat-align-tabs="center" style="height: 340px;">
             <mat-tab label="Cadastro">
               <mat-tab-group mat-align-tabs="center">
                 <mat-tab label="Informações Princiais">
@@ -305,9 +305,9 @@
     <div class="div2">
 
       <div class="relacao-moradores">
-        <div>
+        <!-- <div>
           <h4>Moradores Cadastrados</h4>
-        </div>
+        </div> -->
         <mat-form-field appearance="fill">
           <mat-label>Filtro</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Digite um dado de pesquisa" #input>
@@ -365,5 +365,3 @@
     </div>
   </div>
 </div>
-
-<!-- nao esquece de commitar -->

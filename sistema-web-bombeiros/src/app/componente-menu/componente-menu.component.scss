@@ -2,15 +2,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
 
-// @media screen and (max-width: 540px) {
-//   .menu-desktop {
-//     display: none;
-//   }
+@media screen and (max-width: 540px) {
+  .menu-desktop {
+    display: none;
+  }
 
-//   .menu-mobile {
-//     display: initial;
-//   }
-// }
+  .menu-mobile {
+    display: initial;
+  }
+
+  .botao-menu {
+    display: absolute;
+  }
+}
 
 @media screen and (min-width: 541px) {
   .menu-desktop {
@@ -20,11 +24,26 @@
   .menu-mobile {
     display: none;
   }
+
+  // .botao-menu {
+  //   display: none;
+  // }
+}
+
+.botao-menu {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+}
+
+.botao-menu button {
+  width: 15px;
+  padding: 0;
 }
 
 .menu-mobile {
   height: 100vh;
-  display: none;
+  // display: none;
 }
 
 .menu-desktop {

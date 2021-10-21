@@ -26,6 +26,7 @@ import { BombeirosComponent } from './bombeiros/bombeiros.component';
 import { MapaApiComponent } from './mapa-api/mapa-api.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -57,9 +58,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatNativeDateModule,
     HttpClientModule,
     MatSidenavModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MoradoresService {
   url: string = `${environment.urlApi}/moradores`;
@@ -12,9 +12,7 @@ export class MoradoresService {
   constructor(private http: HttpClient) {}
 
   async create(morador: Morador): Promise<Morador> {
-    return this.http
-      .post<Morador>(this.url, morador)
-      .toPromise();
+    return this.http.post<Morador>(this.url, morador).toPromise();
   }
 
   async read(id: number): Promise<Morador> {

@@ -117,7 +117,7 @@ export class TelaCadastroComponent implements OnInit {
   cep: string = "";
   clicado: boolean = false;
   moradores: any;
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource([]);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -174,7 +174,8 @@ export class TelaCadastroComponent implements OnInit {
 
   async getMoradores() {
     this.moradores = await this.moradoresService.list();
-    console.log(this.moradores);
+    this.dataSource = new MatTableDataSource(this.moradores);
+    // console.log(this.moradores);
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
