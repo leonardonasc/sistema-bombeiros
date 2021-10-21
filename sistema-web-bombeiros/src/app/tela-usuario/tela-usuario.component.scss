@@ -1,20 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@800&display=swap');
 
-@media screen and(min-width:541px){
-  .container-usuarios {
-    width: calc(100vw - 200px);
+@media screen and (max-width: 670px) {
+  .container-2, .container-3, .container-4, .container-5, .container-6 {
+    display: flex;
+    flex-direction: column;
   }
 
-  .input-campos {
-    width: 250px;
+  .input-campos, .input-usuarios {
+    width: 100%;
   }
-}
 
-@media screen and(max-width:541px) {
   .container-usuarios {
     width: 100vw;
   }
+}
 
+@media screen and (min-width:671px) and (max-width: 1000px) {
+  .container-2, .container-3, .container-4, .container-5, .container-6 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .campos-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input-campos, .input-usuarios {
+    width: 400px;
+  }
+
+  .container-usuarios {
+    width: calc(100vw - 200px);
+  }
+}
+
+@media screen and (min-width: 1001px) {
+  .container-2, .container-3, .container-4, .container-5, .container-6 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .input-campos {
+    width: 200px;
+  }
+
+  .input-usuarios {
+    width: 100%;
+  }
+
+  .container-usuarios {
+    width: calc(100vw - 200px);
+  }
 }
 
 .container-usuarios {
@@ -39,24 +77,24 @@
   width: 60vw;
 }
 
-.container-2, .container-3, .container-4 {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
+// .container-2, .container-3, .container-4 {
+//   display: flex;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+// }
 
 .btn-danger {
   width: 100px;
   justify-self: end;
 }
 
-.input-usuarios {
-  // width: calc(100% - 80px);
-  width: 100%;
-}
+// .input-usuarios {
+//   width: calc(100% - 80px);
+//   width: 100%;
+// }
 
 .campos-form {
-  display: flex;
+  // display: flex;
   margin-bottom: 15px;
 }
 
