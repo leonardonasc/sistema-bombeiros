@@ -14,4 +14,6 @@ export interface Morador {
   numeroMoradores: number;
   temBotijao: string;
   qtdBotijao: number;
+  longitude: string;
+  latitude: string;
 }

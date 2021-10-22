@@ -19,10 +19,6 @@ export interface CadastroUsuarios {
   perfilAcesso: string;
 }
 
-// const ELEMENT_DATA: CadastroUsuarios[] = [
-//   {nome: 'Fulano Ciclano Beltrano', matricula: 99999, nomeDeGuerra: 'Sgt. Beltrano', email:'fulano@bombeiros.com',  perfilAcesso: 'Monitoramento'},
-// ];
-
 @Component({
   selector: 'app-tela-usuario',
   templateUrl: './tela-usuario.component.html',
@@ -42,7 +38,7 @@ export class TelaUsuarioComponent implements OnInit {
   dataSource = new MatTableDataSource([]);
 
   formGroup = new FormGroup({
-    nomeCompleto: new FormControl('', [Validators.required, nomeCompleto()]),
+    nome: new FormControl('', [Validators.required, nomeCompleto()]),
     matricula: new FormControl('', [Validators.required]),
     nomeDeGuerra: new FormControl(''),
     senha: new FormControl('', [Validators.minLength(6), Validators.required]),
@@ -54,7 +50,7 @@ export class TelaUsuarioComponent implements OnInit {
     perfilAcesso: new FormControl('', [Validators.required]),
   });
 
-  cadastrar() {
+  async cadastrar() {
     if (this.formGroup.value.senha != this.formGroup.value.confirmacaoSenha) {
       alert('As senhas não coincidem!');
     } else if (
@@ -63,12 +59,14 @@ export class TelaUsuarioComponent implements OnInit {
     ) {
       alert('Os campos de senha devem ser preenchidos.');
     } else if (this.formGroup.valid) {
+      await this.usuariosService.create(this.formGroup.value);
       alert('Usuário cadastrado com sucesso.');
       console.log(this.formGroup.value);
       this.formGroup.reset();
-      console.log(this.formGroup.value);
     }
   }
+
+  carregarNaTela() {}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -103,8 +101,6 @@ export class TelaUsuarioComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
   }
-
-
 
   perfis: Perfil[] = [
     { value: 'admin-0', viewValue: 'Administrador' },

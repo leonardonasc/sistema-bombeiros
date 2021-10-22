@@ -1,28 +1,47 @@
 package com.springboot.SistemaWebBombeiros.models;
 
+import javax.persistence.*;
+
+@Entity
 public class Morador {
-    private Number id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(nullable=false)
     private String nome;
+    @Column(unique=true,nullable=false)
     private String cpf;
+    @Column(nullable=false)
     private String email;
+    @Column(nullable=false)
     private String telefone1;
     private String telefone2;
+    @Column(nullable=false)
     private String cep;
+    @Column(nullable=false)
     private String endereco;
     private String numeroEndereco;
+    @Column(nullable=false)
     private String bairro;
+    @Column(nullable=false)
     private String cidade;
+    @Column(nullable=false)
     private String tipoEdificacao;
-    private Number numeroMoradores;
+    @Column(nullable=false)
+    private int numeroMoradores;
+    @Column(nullable=false)
     private String temBotijao;
-    private Number qtdBotijao;
+    @Column(nullable = true)
+    private int qtdBotijao;
+    private String longitude;
+    private String latitude;
     
     public Morador() {
     }
 
-    public Morador(Number id, String nome, String cpf, String email, String telefone1, String telefone2, String cep,
+    public Morador(int id, String nome, String cpf, String email, String telefone1, String telefone2, String cep,
             String endereco, String numeroEndereco, String bairro, String cidade, String tipoEdificacao,
-            Number numeroMoradores, String temBotijao, Number qtdBotijao) {
+            int numeroMoradores, String temBotijao, int qtdBotijao, String longitude, String latitude) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -38,13 +57,15 @@ public class Morador {
         this.numeroMoradores = numeroMoradores;
         this.temBotijao = temBotijao;
         this.qtdBotijao = qtdBotijao;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
-    public Number getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Number id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -136,11 +157,11 @@ public class Morador {
         this.tipoEdificacao = tipoEdificacao;
     }
 
-    public Number getNumeroMoradores() {
+    public int getNumeroMoradores() {
         return numeroMoradores;
     }
 
-    public void setNumeroMoradores(Number numeroMoradores) {
+    public void setNumeroMoradores(int numeroMoradores) {
         this.numeroMoradores = numeroMoradores;
     }
 
@@ -152,13 +173,29 @@ public class Morador {
         this.temBotijao = temBotijao;
     }
 
-    public Number getQtdBotijao() {
+    public int getQtdBotijao() {
         return qtdBotijao;
     }
 
-    public void setQtdBotijao(Number qtdBotijao) {
+    public void setQtdBotijao(int qtdBotijao) {
         this.qtdBotijao = qtdBotijao;
     }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getlatitude() {
+        return latitude;
+    }
+
+    public void setlatitude(String latitude) {
+        this.latitude = latitude;
+    } 
 
     
     

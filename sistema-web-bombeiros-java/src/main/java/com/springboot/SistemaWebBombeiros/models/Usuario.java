@@ -1,18 +1,32 @@
 package com.springboot.SistemaWebBombeiros.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Usuario {
-    private Number id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(nullable=false)
     private String nome;
-    private Number matricula;
+    @Column(unique=true)
+    private int matricula;
     private String nomeDeGuerra;
+    @Column(nullable=false)
     private String senha;
+    @Column(nullable=false)
     private String email;
+    @Column(nullable=false)
     private String perfilAcesso;
     
     public Usuario() {
     }
 
-    public Usuario(Number id, String nome, Number matricula, String nomeDeGuerra, String senha, String email,
+    public Usuario(int id, String nome, int matricula, String nomeDeGuerra, String senha, String email,
             String perfilAcesso) {
         this.id = id;
         this.nome = nome;
@@ -23,11 +37,11 @@ public class Usuario {
         this.perfilAcesso = perfilAcesso;
     }
 
-    public Number getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Number id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -39,11 +53,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public Number getMatricula() {
+    public int getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(Number matricula) {
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 

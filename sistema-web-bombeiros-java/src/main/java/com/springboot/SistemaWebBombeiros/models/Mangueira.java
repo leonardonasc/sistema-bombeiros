@@ -1,25 +1,34 @@
 package com.springboot.SistemaWebBombeiros.models;
 
+import javax.persistence.*;
+
+@Entity
 public class Mangueira {
-    private Number id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String modelo;
     private String validade;
     private String tamanho;    
+    @ManyToOne
+    @JoinColumn(nullable=false)
+    private Morador morador;
     
     public Mangueira() {
     }   
 
-    public Mangueira(Number id, String modelo, String validade, String tamanho) {
+    public Mangueira(int id, String modelo, String validade, String tamanho, Morador morador) {
         this.id = id;
         this.modelo = modelo;
         this.validade = validade;
         this.tamanho = tamanho;
+        this.morador = morador;
     }
 
-    public Number getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Number id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getModelo() {
@@ -39,6 +48,14 @@ public class Mangueira {
     }
     public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
+    }
+
+    public Morador getMorador() {
+        return morador;
+    }
+
+    public void setMorador(Morador morador) {
+        this.morador = morador;
     }
 
     

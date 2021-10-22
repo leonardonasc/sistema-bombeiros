@@ -11,7 +11,7 @@
             <div class="campos-form">
               <mat-form-field class="input-usuarios" appearance="fill">
                 <mat-label>Nome Completo</mat-label>
-                <input matInput formControlName="nomeCompleto">
+                <input matInput formControlName="nome">
                 <mat-error *ngIf="formGroup.controls.nomeCompleto.invalid">Digite o nome completo</mat-error>
               </mat-form-field>
             </div>
@@ -133,7 +133,7 @@
 
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="carregarNaTela()"></tr>
       </table>
       <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
         [showFirstLastButtons]="showFirstLastButtons" [pageIndex]="pageIndex" aria-label="Select page">

@@ -13,6 +13,10 @@
   .container-usuarios {
     width: 100vw;
   }
+
+  .container-box, .relacao-usuarios {
+    width: 80vw;
+  }
 }
 
 @media screen and (min-width:671px) and (max-width: 1000px) {
@@ -34,6 +38,10 @@
   .container-usuarios {
     width: calc(100vw - 200px);
   }
+
+  .container-box, .relacao-usuarios {
+    width: 70vw;
+  }
 }
 
 @media screen and (min-width: 1001px) {
@@ -53,6 +61,10 @@
   .container-usuarios {
     width: calc(100vw - 200px);
   }
+
+  .container-box, .relacao-usuarios {
+    width: 60vw;
+  }
 }
 
 .container-usuarios {
@@ -71,10 +83,6 @@
 }
 .header h1 {
   text-align: center;
-}
-
-.container-box {
-  width: 60vw;
 }
 
 // .container-2, .container-3, .container-4 {
@@ -119,7 +127,6 @@
 .relacao-usuarios {
   display: flex;
   flex-direction: column;
-  width: 60vw;
 }
 
 .table {
