@@ -10,10 +10,11 @@
                   <div class="cadastro">
                     <div class="container-1">
                       <div class="campos-form">
+                        <input type="hidden" formControlName="id">
                         <mat-form-field class="input-moradores" appearance="fill">
                           <mat-label>Nome Completo</mat-label>
-                          <input matInput formControlName="nomeCompleto">
-                          <mat-error *ngIf="formGroup.controls.nomeCompleto.invalid">Digite o nome completo</mat-error>
+                          <input matInput formControlName="nome">
+                          <mat-error *ngIf="formGroup.controls.nome.invalid">Digite o nome completo</mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -86,8 +87,8 @@
                       <div class="campos-form">
                         <mat-form-field class="input-campos" appearance="fill">
                           <mat-label>Número</mat-label>
-                          <input matInput formControlName="numero">
-                          <mat-error *ngIf="formGroup.controls.numero.invalid && clicado">Informe o número correto
+                          <input matInput formControlName="numEndereco">
+                          <mat-error *ngIf="formGroup.controls.numEndereco.invalid && clicado">Informe o número correto
                           </mat-error>
                         </mat-form-field>
                       </div>
@@ -177,13 +178,17 @@
                       </mat-form-field>
                       <mat-form-field appearance="fill" class="input-campos">
                         <mat-label>Modelo</mat-label>
-                        <input matInput type="text" formControlName="modeloMangueira">
-                        <mat-error *ngIf="formGroup.controls.modeloMangueira.invalid">Preencha o modelo da mangueira
+                        <mat-select formControlName="modeloMangueira">
+                          <mat-option *ngFor="let modelo of modelosMangueira" [value]="modelo.value">
+                            {{modelo.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formGroup.controls.modeloExtintor.invalid">Selecione o modelo da mangueira
                         </mat-error>
                       </mat-form-field>
                       <mat-form-field appearance="fill" class="input-campos">
                         <mat-label>Tamanho</mat-label>
-                        <input matInput type="text" formControlName="tamanhoMangueira">
+                        <input matInput type="text" formControlName="tamanhoMangueira" placeholder="Tamanho em metros">
                         <mat-error *ngIf="formGroup.controls.tamanhoMangueira.invalid">Preencha o tamanho da mangueira
                         </mat-error>
                       </mat-form-field>
@@ -295,7 +300,8 @@
             </mat-tab>
           </mat-tab-group>
           <div class="div-button">
-            <button class="btn btn-danger" (click)="getMoradores()">Cadastrar</button>
+            <button class="btn btn-danger" *ngIf="!editar" (click)="cadastrar()">Cadastrar</button>
+            <button class="btn btn-danger" *ngIf="editar" (click)="salvarCadastro()">Salvar</button>
           </div>
         </form>
       </div>
@@ -326,9 +332,9 @@
           </ng-container>
 
           <!-- telefone Column -->
-          <ng-container matColumnDef="telefone">
+          <ng-container matColumnDef="telefone1">
             <th mat-header-cell *matHeaderCellDef>Telefone</th>
-            <td mat-cell *matCellDef="let element">{{element.telefone}}</td>
+            <td mat-cell *matCellDef="let element">{{element.telefone1}}</td>
           </ng-container>
 
           <!-- numMoradores Column -->
@@ -356,7 +362,7 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="carregaNaTela(row)"></tr>
         </table>
         <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
           [showFirstLastButtons]="showFirstLastButtons" [pageIndex]="pageIndex" aria-label="Select page">

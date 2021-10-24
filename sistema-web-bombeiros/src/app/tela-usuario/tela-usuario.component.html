@@ -6,13 +6,14 @@
     </div>
     <div class="div1">
       <div class="container-box">
-        <form [formGroup]="formGroup" (ngSubmit)="cadastrar()">
+        <form [formGroup]="formGroup" >
           <div class="container-1">
             <div class="campos-form">
+              <input type="hidden" formControlName="id">
               <mat-form-field class="input-usuarios" appearance="fill">
                 <mat-label>Nome Completo</mat-label>
                 <input matInput formControlName="nome">
-                <mat-error *ngIf="formGroup.controls.nomeCompleto.invalid">Digite o nome completo</mat-error>
+                <mat-error *ngIf="formGroup.controls.nome.invalid">Digite o nome completo</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -83,7 +84,8 @@
             </div>
           </div>
           <div class="div-button">
-            <button class="btn btn-danger">Cadastrar</button>
+            <button type="reset" class="btn btn-danger" *ngIf="!editar" (click)="cadastrar()">Cadastrar</button>
+            <button type="reset" class="btn btn-danger" *ngIf="editar" (click)="salvarCadastro()">Salvar</button>
           </div>
         </form>
       </div>
@@ -132,8 +134,8 @@
         </ng-container>
 
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="carregarNaTela()"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="carregarNaTela(row)"></tr>
       </table>
       <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
         [showFirstLastButtons]="showFirstLastButtons" [pageIndex]="pageIndex" aria-label="Select page">

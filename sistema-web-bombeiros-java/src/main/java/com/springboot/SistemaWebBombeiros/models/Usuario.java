@@ -1,10 +1,17 @@
 package com.springboot.SistemaWebBombeiros.models;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
 public class Usuario {
@@ -14,7 +21,7 @@ public class Usuario {
     @Column(nullable=false)
     private String nome;
     @Column(unique=true)
-    private int matricula;
+    private String matricula;
     private String nomeDeGuerra;
     @Column(nullable=false)
     private String senha;
@@ -23,10 +30,25 @@ public class Usuario {
     @Column(nullable=false)
     private String perfilAcesso;
     
+    public Collection<? extends GrantedAuthority> getAuthorities(Usuario usuario) {
+        List<GrantedAuthority> authorities = new ArrayList();
+        if (usuario.getPerfilAcesso().equals("Administrador")) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            authorities.add(new SimpleGrantedAuthority("ROLE_MONITORAMENTO"));
+            authorities.add(new SimpleGrantedAuthority("ROLE_COBOM"));
+        } else if (usuario.getPerfilAcesso().equals("Monitoramento")) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_MONITORAMENTO"));
+        } else if (usuario.getPerfilAcesso().equals("Cobom")) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_COBOM"));
+        }
+
+        return authorities;
+    }
+
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, int matricula, String nomeDeGuerra, String senha, String email,
+    public Usuario(int id, String nome, String matricula, String nomeDeGuerra, String senha, String email,
             String perfilAcesso) {
         this.id = id;
         this.nome = nome;
@@ -53,11 +75,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

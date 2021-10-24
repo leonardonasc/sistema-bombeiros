@@ -36,8 +36,10 @@ export class TelaUsuarioComponent implements OnInit {
   ];
   usuarios: any;
   dataSource = new MatTableDataSource([]);
+  editar: boolean = false;
 
   formGroup = new FormGroup({
+    id: new FormControl(),
     nome: new FormControl('', [Validators.required, nomeCompleto()]),
     matricula: new FormControl('', [Validators.required]),
     nomeDeGuerra: new FormControl(''),
@@ -59,14 +61,26 @@ export class TelaUsuarioComponent implements OnInit {
     ) {
       alert('Os campos de senha devem ser preenchidos.');
     } else if (this.formGroup.valid) {
-      await this.usuariosService.create(this.formGroup.value);
       alert('Usuário cadastrado com sucesso.');
+      await this.usuariosService.create(this.formGroup.value);
       console.log(this.formGroup.value);
-      this.formGroup.reset();
     }
   }
 
-  carregarNaTela() {}
+  carregarNaTela(row: any) {
+    this.formGroup.controls.nome.setValue(row.nome);
+    this.formGroup.controls.matricula.setValue(row.matricula);
+    this.formGroup.controls.nomeDeGuerra.setValue(row.nomeDeGuerra);
+    this.formGroup.controls.email.setValue(row.email);
+    this.formGroup.controls.perfilAcesso.setValue(row.perfilAcesso);
+    this.formGroup.controls.id.setValue(row.id);
+    this.editar = true;
+  }
+
+  async salvarCadastro() {
+    await this.usuariosService.update(this.formGroup.value);
+    this.editar = false;
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -103,8 +117,8 @@ export class TelaUsuarioComponent implements OnInit {
   }
 
   perfis: Perfil[] = [
-    { value: 'admin-0', viewValue: 'Administrador' },
-    { value: 'cobom-1', viewValue: 'Cobom' },
-    { value: 'monitoramento-2', viewValue: 'Monitoramento' },
+    { value: 'Administrador', viewValue: 'Administrador' },
+    { value: 'Cobom', viewValue: 'Cobom' },
+    { value: 'Monitoramento', viewValue: 'Monitoramento' },
   ];
 }
