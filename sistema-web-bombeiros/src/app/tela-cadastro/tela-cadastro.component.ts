@@ -198,6 +198,11 @@ export class TelaCadastroComponent implements OnInit {
     this.editar = false;
   }
 
+  async deletar() {
+    await this.moradoresService.delete(this.formGroup.controls.id.value);
+    this.editar = false;
+  }
+
   carregaNaTela(row: any) {
     console.log(row)
     this.editar = true;

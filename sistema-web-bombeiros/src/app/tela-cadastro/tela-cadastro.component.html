@@ -302,6 +302,7 @@
           <div class="div-button">
             <button class="btn btn-danger" *ngIf="!editar" (click)="cadastrar()">Cadastrar</button>
             <button class="btn btn-danger" *ngIf="editar" (click)="salvarCadastro()">Salvar</button>
+            <button class="btn btn-danger" *ngIf="editar" (click)="deletar()">Deletar</button>
           </div>
         </form>
       </div>
