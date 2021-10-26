@@ -3647,38 +3647,6 @@
       "anoExpecao": 2021,
       "longitude": -48.63634586334227,
       "latitude": -27.629512893219626
-    },
-    {
-      "id": 115,
-      "nome": "Fulano",
-      "cep": "88102030",
-      "endereco": "Rua Sete de Setembro",
-      "numEndereco": 4,
-      "bairro": "Kobrasol",
-      "cidade": "São José",
-      "telefone1": "48991919199",
-      "telefone2": "48991919199",
-      "cpf": "99999999999",
-      "email": "email@teste.com",
-      "numMoradores": 4,
-      "tipoEdificacao": "Residencial",
-      "temBotijao": "Sim",
-      "qtdBotijao": 1,
-      "tamanhoMangueira": 5,
-      "modeloMangueira": "Mangueira Plástica",
-      "validadeMangueira": "2022-10-20T03:00:00.000Z",
-      "validadeValvula": "2022-10-20T03:00:00.000Z",
-      "validadeHidrante": "2022-10-20T03:00:00.000Z",
-      "numeroPatrimonio": 12452,
-      "ultimoTeste": "2021-10-15T03:00:00.000Z",
-      "statusAtividade": "Finalizada",
-      "validadeExtintor": "2022-10-20T03:00:00.000Z",
-      "modeloExtintor": "Pó Químico ABC",
-      "seloInmetro": "Sim",
-      "pesoExtintor": 5,
-      "anoExpecao": 2021,
-      "longitude": -48.63437175750732,
-      "latitude": -27.624493942118335
     }
   ],
   "usuarios": [
@@ -3817,26 +3785,6 @@
       "senha": "8Uy1atrKes",
       "email": "rafael.lima@bombeiros.sc.com.br",
       "perfilAcesso": "Cobom"
-    },
-    {
-      "id": 16,
-      "nome": "LEONARDO SCHMIDT",
-      "matricula": "192837",
-      "nomeDeGuerra": "ASDASD",
-      "senha": "123123",
-      "confirmacaoSenha": "123123",
-      "email": "LEONARDO@EMAIL.COM",
-      "perfilAcesso": "admin-0"
-    },
-    {
-      "id": 17,
-      "nome": "Leonardo Henrique Schmidt",
-      "matricula": 123,
-      "nomeDeGuerra": "Leonardo Schmidt",
-      "senha": "123321",
-      "confirmacaoSenha": "123321",
-      "email": "leonardo@amfpromotora.com",
-      "perfilAcesso": "Administrador"
     }
   ]
 }

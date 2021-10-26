@@ -300,9 +300,9 @@
             </mat-tab>
           </mat-tab-group>
           <div class="div-button">
-            <button class="btn btn-danger" *ngIf="!editar" (click)="cadastrar()">Cadastrar</button>
-            <button class="btn btn-danger" *ngIf="editar" (click)="salvarCadastro()">Salvar</button>
-            <button class="btn btn-danger" *ngIf="editar" (click)="deletar()">Deletar</button>
+            <button class="btn btn-danger" id="btn-cadastro-morador" *ngIf="!editar" (click)="cadastrar()">Cadastrar</button>
+            <button class="btn btn-danger" id="btn-salvar-morador" *ngIf="editar" (click)="salvarCadastro()">Salvar</button>
+            <button class="btn btn-danger" id="btn-deletar-morador" *ngIf="editar" (click)="deletar()">Deletar</button>
           </div>
         </form>
       </div>

@@ -85,24 +85,16 @@
   text-align: center;
 }
 
-// .container-2, .container-3, .container-4 {
-//   display: flex;
-//   justify-content: space-between;
-//   flex-wrap: wrap;
-// }
+#btn-deletar-morador {
+  margin-right: 10px;
+}
 
 .btn-danger {
   width: 100px;
   justify-self: end;
 }
 
-// .input-usuarios {
-//   width: calc(100% - 80px);
-//   width: 100%;
-// }
-
 .campos-form {
-  // display: flex;
   margin-bottom: 15px;
 }
 
