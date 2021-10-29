@@ -84,8 +84,9 @@
             </div>
           </div>
           <div class="div-button">
-            <button type="reset" class="btn btn-danger" *ngIf="!editar" (click)="cadastrar()">Cadastrar</button>
-            <button type="reset" class="btn btn-danger" *ngIf="editar" (click)="salvarCadastro()">Salvar</button>
+            <button type="reset" class="btn btn-danger" id="btn-cadastro-morador" *ngIf="!editar" (click)="cadastrar()">Cadastrar</button>
+            <button type="reset" class="btn btn-danger" id="btn-salvar-morador" *ngIf="editar" (click)="salvarCadastro()">Salvar</button>
+            <button type="reset" class="btn btn-danger" id="btn-deletar-morador" *ngIf="editar" (click)="deletar()">Deletar</button>
           </div>
         </form>
       </div>

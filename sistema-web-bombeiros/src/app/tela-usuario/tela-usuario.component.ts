@@ -67,6 +67,13 @@ export class TelaUsuarioComponent implements OnInit {
     }
   }
 
+  async deletar() {
+    if (confirm("Deseja realmente excluir o cadastro?")){
+      await this.usuariosService.delete(this.formGroup.controls.id.value);
+      this.editar = false;
+    }
+  }
+
   carregarNaTela(row: any) {
     this.formGroup.controls.nome.setValue(row.nome);
     this.formGroup.controls.matricula.setValue(row.matricula);

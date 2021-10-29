@@ -22,81 +22,6 @@ export interface CadastroMoradores {
   qtdBotijao: number;
 }
 
-const ELEMENT_DATA: CadastroMoradores[] = [
-  {
-    nome: 'Leonardo Schmidt',
-    endereco: 'Rua Qualquer, 32',
-    telefone: 5548991919199,
-    numMoradores: 4,
-    tipoEdificacao: 'Residencial',
-    temBotijao: 'Sim',
-    qtdBotijao: 1,
-  },
-  {
-    nome: 'Leonardo Nascimento',
-    endereco: 'Rua Qualquer, 32',
-    telefone: 5548991919199,
-    numMoradores: 4,
-    tipoEdificacao: 'Residencial',
-    temBotijao: 'Sim',
-    qtdBotijao: 1,
-  },
-  {
-    nome: 'Martin Ferreira',
-    endereco: 'Rua Qualquer, 32',
-    telefone: 5548991919199,
-    numMoradores: 4,
-    tipoEdificacao: 'Residencial',
-    temBotijao: 'Sim',
-    qtdBotijao: 1,
-  },
-  {
-    nome: 'Fulano',
-    endereco: 'Rua Qualquer, 32',
-    telefone: 5548991919199,
-    numMoradores: 4,
-    tipoEdificacao: 'Residencial',
-    temBotijao: 'Sim',
-    qtdBotijao: 1,
-  },
-  {
-    nome: 'Fulano',
-    endereco: 'Rua Qualquer, 32',
-    telefone: 5548991919199,
-    numMoradores: 4,
-    tipoEdificacao: 'Residencial',
-    temBotijao: 'Sim',
-    qtdBotijao: 1,
-  },
-  {
-    nome: 'Fulano',
-    endereco: 'Rua Qualquer, 32',
-    telefone: 5548991919199,
-    numMoradores: 4,
-    tipoEdificacao: 'Residencial',
-    temBotijao: 'Sim',
-    qtdBotijao: 1,
-  },
-  {
-    nome: 'Fulano',
-    endereco: 'Rua Qualquer, 32',
-    telefone: 5548991919199,
-    numMoradores: 4,
-    tipoEdificacao: 'Residencial',
-    temBotijao: 'Sim',
-    qtdBotijao: 1,
-  },
-  {
-    nome: 'Fulano',
-    endereco: 'Rua Qualquer, 32',
-    telefone: 5548991919199,
-    numMoradores: 4,
-    tipoEdificacao: 'Residencial',
-    temBotijao: 'Sim',
-    qtdBotijao: 1,
-  },
-];
-
 @Component({
   selector: 'app-tela-cadastro',
   templateUrl: './tela-cadastro.component.html',
@@ -199,8 +124,10 @@ export class TelaCadastroComponent implements OnInit {
   }
 
   async deletar() {
-    await this.moradoresService.delete(this.formGroup.controls.id.value);
-    this.editar = false;
+    if (confirm("Deseja realmente excluir o cadastro?")) {
+      await this.moradoresService.delete(this.formGroup.controls.id.value);
+      this.editar = false;
+    }
   }
 
   carregaNaTela(row: any) {
