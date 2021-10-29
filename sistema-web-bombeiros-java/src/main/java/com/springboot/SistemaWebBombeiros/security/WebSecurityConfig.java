@@ -1,6 +1,6 @@
-package com.springboot.SistemaWebBombeiros.security;
+package com.springboot.sistemawebbombeiros.security;
 
-import com.springboot.SistemaWebBombeiros.service.JwtUserDetailsService;
+import com.springboot.sistemawebbombeiros.service.JwtUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -39,18 +39,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.cors().csrf().disable().and()
-                .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/users").permitAll().
-                .anyRequest().authenticated().and().exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        httpSecurity.csrf().disable().cors().and()
+            .authorizeRequests()
+            .antMatchers("/login").permitAll()
+            .antMatchers(HttpMethod.POST, "/users").permitAll()
+            .anyRequest().authenticated().and().exceptionHandling()
+            .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+            .and().sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity
-            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(filterService, UsernamePasswordAuthenticationFilter.class);
     }
  
 }

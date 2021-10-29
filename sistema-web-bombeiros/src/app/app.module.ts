@@ -1,7 +1,8 @@
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { ErrorInterceptor } from './auth/error.interceptor';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,11 +23,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { HttpClientModule } from '@angular/common/http';
-import { BombeirosComponent } from './bombeiros/bombeiros.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MapaApiComponent } from './mapa-api/mapa-api.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
@@ -38,7 +38,6 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     ComponenteMenuComponent,
     TelaRelatoriosComponent,
     TelaUsuarioComponent,
-    BombeirosComponent,
     MapaApiComponent,
   ],
   imports: [
@@ -60,9 +59,12 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     HttpClientModule,
     MatSidenavModule,
     MatCheckboxModule,
-
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

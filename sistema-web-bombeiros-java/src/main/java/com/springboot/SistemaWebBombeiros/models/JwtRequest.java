@@ -1,4 +1,4 @@
-package com.springboot.SistemaWebBombeiros.models;
+package com.springboot.sistemawebbombeiros.models;
 
 public class JwtRequest {
     private String username;

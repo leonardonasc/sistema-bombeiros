@@ -1,15 +1,8 @@
-package com.springboot.SistemaWebBombeiros.service;
+package com.springboot.sistemawebbombeiros.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import com.springboot.SistemaWebBombeiros.Repositories.UsuarioRepository;
-import com.springboot.SistemaWebBombeiros.models.Usuario;
+import com.springboot.sistemawebbombeiros.repositories.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,7 +16,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String matricula) throws UsernameNotFoundException {
-        com.springboot.SistemaWebBombeiros.models.Usuario user = usuarioRepository.findByMatricula(matricula);
+        com.springboot.sistemawebbombeiros.models.Usuario user = usuarioRepository.findByMatricula(matricula);
         if (user.getMatricula().equals(matricula)) {
             return new User(matricula, user.getSenha(), true, true, true, true, user.getAuthorities(user));
         } else {

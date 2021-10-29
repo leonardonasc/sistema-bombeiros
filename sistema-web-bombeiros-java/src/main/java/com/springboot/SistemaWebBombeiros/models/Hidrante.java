@@ -1,4 +1,4 @@
-package com.springboot.SistemaWebBombeiros.models;
+package com.springboot.sistemawebbombeiros.models;
 
 import javax.persistence.*;
 
@@ -6,9 +6,11 @@ import javax.persistence.*;
 public class Hidrante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
+    @Column(nullable=false)
     private String validade;
     private String numeroPatrimonio;
+    @Column(nullable=false)
     private String dataUltimoTeste;
     private String statusAtividade;
     @ManyToOne
@@ -18,7 +20,7 @@ public class Hidrante {
     public Hidrante() {
     } 
 
-    public Hidrante(int id, String validade, String numeroPatrimonio, String dataUltimoTeste, String statusAtividade,
+    public Hidrante(Integer id, String validade, String numeroPatrimonio, String dataUltimoTeste, String statusAtividade,
             Morador morador) {
         this.id = id;
         this.validade = validade;
@@ -28,10 +30,10 @@ public class Hidrante {
         this.morador = morador;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getValidade() {

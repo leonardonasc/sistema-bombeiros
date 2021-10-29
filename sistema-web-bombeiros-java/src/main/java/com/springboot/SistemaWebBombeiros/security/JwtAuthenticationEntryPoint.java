@@ -1,7 +1,6 @@
-package com.springboot.SistemaWebBombeiros.security;
+package com.springboot.sistemawebbombeiros.security;
 
 import java.io.IOException;
-import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.AuthenticationException;

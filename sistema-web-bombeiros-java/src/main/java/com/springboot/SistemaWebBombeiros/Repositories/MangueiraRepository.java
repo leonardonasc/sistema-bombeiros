@@ -1,5 +1,5 @@
-package com.springboot.SistemaWebBombeiros.Repositories;
-import com.springboot.SistemaWebBombeiros.models.Mangueira;
+package com.springboot.sistemawebbombeiros.repositories;
+import com.springboot.sistemawebbombeiros.models.Mangueira;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package com.springboot.SistemaWebBombeiros.models;
+package com.springboot.sistemawebbombeiros.models;
 
 public class JwtResponse {
     private final String jwttoken;

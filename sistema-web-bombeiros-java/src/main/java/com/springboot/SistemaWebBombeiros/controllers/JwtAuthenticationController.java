@@ -1,15 +1,15 @@
-package com.springboot.SistemaWebBombeiros.controllers;
+package com.springboot.sistemawebbombeiros.controllers;
+
+import com.springboot.sistemawebbombeiros.models.JwtRequest;
+import com.springboot.sistemawebbombeiros.models.JwtResponse;
+import com.springboot.sistemawebbombeiros.security.JwtTokenUtil;
+import com.springboot.sistemawebbombeiros.service.JwtUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-import com.springboot.SistemaWebBombeiros.security.JwtTokenUtil;
-import com.springboot.SistemaWebBombeiros.service.JwtUserDetailsService;
-import com.springboot.SistemaWebBombeiros.models.JwtRequest;
-import com.springboot.SistemaWebBombeiros.models.JwtResponse;
-
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.*;
 
 @RestController

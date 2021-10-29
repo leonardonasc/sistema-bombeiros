@@ -1,5 +1,5 @@
-package com.springboot.SistemaWebBombeiros.Repositories;
-import com.springboot.SistemaWebBombeiros.models.Hidrante;
+package com.springboot.sistemawebbombeiros.repositories;
+import com.springboot.sistemawebbombeiros.models.Hidrante;
 
 import org.springframework.data.repository.CrudRepository;
 

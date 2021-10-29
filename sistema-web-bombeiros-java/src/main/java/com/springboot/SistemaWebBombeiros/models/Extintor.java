@@ -1,13 +1,14 @@
-package com.springboot.SistemaWebBombeiros.models;
+package com.springboot.sistemawebbombeiros.models;
 
 import javax.persistence.*;
-
 @Entity
 public class Extintor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
+    @Column(nullable=false)
     private String dataValidade;
+    @Column(nullable=false)
     private String modelo;
     private String seloInmetro;
     private String peso;
@@ -19,7 +20,7 @@ public class Extintor {
     public Extintor() {
     }
     
-    public Extintor(int id, String dataValidade, String modelo, String seloInmetro, String peso, String anoInspecao,
+    public Extintor(Integer id, String dataValidade, String modelo, String seloInmetro, String peso, String anoInspecao,
             Morador morador) {
         this.id = id;
         this.dataValidade = dataValidade;
@@ -30,10 +31,10 @@ public class Extintor {
         this.morador = morador;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getDataValidade() {

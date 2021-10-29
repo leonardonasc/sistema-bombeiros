@@ -1,4 +1,4 @@
-package com.springboot.SistemaWebBombeiros.models;
+package com.springboot.sistemawebbombeiros.models;
 
 import javax.persistence.*;
 
@@ -6,8 +6,9 @@ import javax.persistence.*;
 public class Mangueira {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String modelo;
+    @Column(nullable=false)
     private String validade;
     private String tamanho;    
     @ManyToOne
@@ -17,7 +18,7 @@ public class Mangueira {
     public Mangueira() {
     }   
 
-    public Mangueira(int id, String modelo, String validade, String tamanho, Morador morador) {
+    public Mangueira(Integer id, String modelo, String validade, String tamanho, Morador morador) {
         this.id = id;
         this.modelo = modelo;
         this.validade = validade;
@@ -25,10 +26,10 @@ public class Mangueira {
         this.morador = morador;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getModelo() {

@@ -1,4 +1,4 @@
-package com.springboot.SistemaWebBombeiros.models;
+package com.springboot.sistemawebbombeiros.models;
 
 import javax.persistence.*;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Valvula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(nullable=false)
     private String validade;
     @ManyToOne
@@ -16,17 +16,17 @@ public class Valvula {
     public Valvula() {
     }
    
-    public Valvula(int id, String validade, Morador morador) {
+    public Valvula(Integer id, String validade, Morador morador) {
         this.id = id;
         this.validade = validade;
         this.morador = morador;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

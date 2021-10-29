@@ -6,18 +6,20 @@ import { TelaHomeComponent } from './tela-home/tela-home.component';
 import { TelaLoginComponent } from './tela-login/tela-login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  {path: "", component: TelaLoginComponent},
   {path: "", component: ComponenteMenuComponent,
-    children: [
-      {path: 'home', component: TelaHomeComponent},
-      {path: 'cadastro', component: TelaCadastroComponent},
-      {path: 'usuario', component: TelaUsuarioComponent},
-      {path: 'relatorio', component: TelaRelatoriosComponent},
-      {path: 'logout', component: TelaLoginComponent},
-    ]
-  },
+  children: [
+    {path: 'home', component: TelaHomeComponent},
+    {path: 'cadastros', component: TelaCadastroComponent},
+    {path: 'usuarios', component: TelaUsuarioComponent},
+    {path: 'relatorios', component: TelaRelatoriosComponent},
+    {path: 'logout', component: TelaLoginComponent},
+  ],
+  canActivate: [AuthGuard]
+},
+{path: "login", component: TelaLoginComponent},
 ];
 
 @NgModule({

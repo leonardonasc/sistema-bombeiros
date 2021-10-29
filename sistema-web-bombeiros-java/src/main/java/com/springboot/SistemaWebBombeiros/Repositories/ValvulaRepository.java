@@ -1,5 +1,5 @@
-package com.springboot.SistemaWebBombeiros.Repositories;
-import com.springboot.SistemaWebBombeiros.models.Valvula;
+package com.springboot.sistemawebbombeiros.repositories;
+import com.springboot.sistemawebbombeiros.models.Valvula;
 
 import org.springframework.data.repository.CrudRepository;
 

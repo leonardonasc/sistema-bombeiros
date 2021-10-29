@@ -1,4 +1,4 @@
-package com.springboot.SistemaWebBombeiros.security;
+package com.springboot.sistemawebbombeiros.security;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;

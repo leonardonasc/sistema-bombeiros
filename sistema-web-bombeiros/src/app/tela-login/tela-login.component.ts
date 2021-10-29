@@ -1,31 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../auth/auth.service';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import JwtRequest from './../models/JwtRequest';
 
 @Component({
   selector: 'app-tela-login',
   templateUrl: './tela-login.component.html',
-  styleUrls: ['./tela-login.component.scss']
+  styleUrls: ['./tela-login.component.scss'],
 })
 export class TelaLoginComponent implements OnInit {
+  constructor(private router: Router, private autenticacao: AuthService) {}
 
-  constructor(private router: Router) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
+  usuario: string = '';
+  senha: string = '';
 
-  usuario: string = "";
-  senha: string = "";
-
-  entrar() {
-    if(this.usuario == "admin" && this.senha == "admin") {
-      this.usuario = "";
-      this.senha = "";
-      this.router.navigate(['/home']);
-
-    } else if (this.usuario == "" || this.senha == "") {
+  async entrar() {
+    if (this.usuario == "" || this.senha == "") {
       alert("Preencha usuário e senha!");
     } else {
-      alert("Usuário ou senha incorreta!");
+      await this.autenticacao.createToken(new JwtRequest(this.usuario, this.senha)).then((value) => {
+        console.log(value);
+        if (this.autenticacao.isLogged()) {
+          this.router.navigate(['/home']);
+        }
+        }).catch(e => alert("Usuário ou senha incorreta!"));
     }
+
   }
 }

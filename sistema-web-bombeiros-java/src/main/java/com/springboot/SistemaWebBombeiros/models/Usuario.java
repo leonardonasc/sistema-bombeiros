@@ -1,4 +1,4 @@
-package com.springboot.SistemaWebBombeiros.models;
+package com.springboot.sistemawebbombeiros.models;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +17,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(nullable=false)
     private String nome;
     @Column(unique=true)
@@ -48,7 +48,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String matricula, String nomeDeGuerra, String senha, String email,
+    public Usuario(Integer id, String nome, String matricula, String nomeDeGuerra, String senha, String email,
             String perfilAcesso) {
         this.id = id;
         this.nome = nome;
@@ -59,11 +59,11 @@ public class Usuario {
         this.perfilAcesso = perfilAcesso;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
