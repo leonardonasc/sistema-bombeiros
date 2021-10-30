@@ -3,7 +3,7 @@ package com.springboot.sistemawebbombeiros.models;
 import javax.persistence.*;
 
 @Entity
-public class Morador {
+public class Edificacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -28,7 +28,7 @@ public class Morador {
     @Column(nullable=false)
     private String tipoEdificacao;
     @Column(nullable=false)
-    private Integer numeroMoradores;
+    private Integer numeroEdificacaoes;
     @Column(nullable=false)
     private String temBotijao;
     @Column(nullable = true)
@@ -36,12 +36,12 @@ public class Morador {
     private String longitude;
     private String latitude;
     
-    public Morador() {
+    public Edificacao() {
     }
 
-    public Morador(Integer id, String nome, String cpf, String email, String telefone1, String telefone2, String cep,
+    public Edificacao(Integer id, String nome, String cpf, String email, String telefone1, String telefone2, String cep,
             String endereco, String numeroEndereco, String bairro, String cidade, String tipoEdificacao,
-            Integer numeroMoradores, String temBotijao, Integer qtdBotijao, String longitude, String latitude) {
+            Integer numeroEdificacaoes, String temBotijao, Integer qtdBotijao, String longitude, String latitude) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -54,7 +54,7 @@ public class Morador {
         this.bairro = bairro;
         this.cidade = cidade;
         this.tipoEdificacao = tipoEdificacao;
-        this.numeroMoradores = numeroMoradores;
+        this.numeroEdificacaoes = numeroEdificacaoes;
         this.temBotijao = temBotijao;
         this.qtdBotijao = qtdBotijao;
         this.longitude = longitude;
@@ -157,12 +157,12 @@ public class Morador {
         this.tipoEdificacao = tipoEdificacao;
     }
 
-    public Integer getNumeroMoradores() {
-        return numeroMoradores;
+    public Integer getNumeroEdificacaoes() {
+        return numeroEdificacaoes;
     }
 
-    public void setNumeroMoradores(Integer numeroMoradores) {
-        this.numeroMoradores = numeroMoradores;
+    public void setNumeroEdificacaoes(Integer numeroEdificacaoes) {
+        this.numeroEdificacaoes = numeroEdificacaoes;
     }
 
     public String getTemBotijao() {

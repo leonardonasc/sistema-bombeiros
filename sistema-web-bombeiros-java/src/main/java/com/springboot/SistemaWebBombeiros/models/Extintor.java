@@ -15,20 +15,20 @@ public class Extintor {
     private String anoInspecao;
     @ManyToOne
     @JoinColumn(nullable=false)
-    private Morador morador;
+    private Edificacao edificacao;
     
     public Extintor() {
     }
     
     public Extintor(Integer id, String dataValidade, String modelo, String seloInmetro, String peso, String anoInspecao,
-            Morador morador) {
+            Edificacao edificacao) {
         this.id = id;
         this.dataValidade = dataValidade;
         this.modelo = modelo;
         this.seloInmetro = seloInmetro;
         this.peso = peso;
         this.anoInspecao = anoInspecao;
-        this.morador = morador;
+        this.edificacao = edificacao;
     }
 
     public Integer getId() {
@@ -68,11 +68,11 @@ public class Extintor {
         this.anoInspecao = anoInspecao;
     }
 
-    public Morador getMorador() {
-        return morador;
+    public Edificacao getEdificacao() {
+        return edificacao;
     }
 
-    public void setMorador(Morador morador) {
-        this.morador = morador;
+    public void setEdificacao(Edificacao edificacao) {
+        this.edificacao = edificacao;
     }
 }

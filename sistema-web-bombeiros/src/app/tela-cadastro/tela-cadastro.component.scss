@@ -15,7 +15,7 @@
   }
 
   .input-campos,
-  .input-moradores {
+  .input-edificacoes {
     width: 100%;
   }
 
@@ -23,11 +23,11 @@
     display: flex;
     flex-direction: column;
   }
-  .container-moradores {
+  .container-edificacoes {
     width: 100vw;
   }
 
-  .container-box, .relacao-moradores {
+  .container-box, .relacao-edificacoes {
     width: 80vw;
   }
 }
@@ -50,15 +50,15 @@
   }
 
   .input-campos,
-  .input-moradores {
+  .input-edificacoes {
     width: 400px;
   }
 
-  .container-moradores {
+  .container-edificacoes {
     width: calc(100vw - 200px);
   }
 
-  .container-box, .relacao-moradores {
+  .container-box, .relacao-edificacoes {
     width: 70vw;
   }
 }
@@ -82,14 +82,14 @@
     justify-content: space-between;
   }
 
-  .input-moradores {
+  .input-edificacoes {
     width: 100%;
   }
-  .container-moradores {
+  .container-edificacoes {
     width: calc(100vw - 200px);
   }
 
-  .container-box, .relacao-moradores {
+  .container-box, .relacao-edificacoes {
     width: 60vw;
   }
 }
@@ -107,7 +107,7 @@
   overflow: auto;
 }
 
-.container-moradores {
+.container-edificacoes {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,12 +124,12 @@
   width: 100px;
 }
 
-.relacao-moradores {
+.relacao-edificacoes {
   display: flex;
   flex-direction: column;
 }
 
-#btn-deletar-morador {
+#btn-deletar-edificacao {
   margin-right: 10px;
 }
 

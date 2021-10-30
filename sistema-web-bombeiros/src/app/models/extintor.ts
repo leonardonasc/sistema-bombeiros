@@ -5,5 +5,5 @@ export interface Extintor {
   seloInmetro: string;
   peso: number;
   anoInspecao: string;
-  morador: number;
+  edificacao: number;
 }

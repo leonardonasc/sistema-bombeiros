@@ -1,4 +1,4 @@
-import { MoradoresService } from './../services/moradores.service';
+import { EdificacoesService } from '../services/edificacoes.service';
 import { Component, OnInit } from '@angular/core';
 import { Feature, View } from 'ol';
 import Map from 'ol/Map';
@@ -15,11 +15,11 @@ import { boundingExtent } from 'ol/extent';
   styleUrls: ['./mapa-api.component.scss'],
 })
 export class MapaApiComponent implements OnInit {
-  constructor(private moradoresService: MoradoresService) {}
+  constructor(private edificacoesService: EdificacoesService) {}
   pontos: any;
 
   async ngAfterViewInit() {
-    this.pontos = await this.moradoresService.list();
+    this.pontos = await this.edificacoesService.list();
     const map = this.criarMapa();
     const cluster = this.criarCluster();
     map.addLayer(cluster);

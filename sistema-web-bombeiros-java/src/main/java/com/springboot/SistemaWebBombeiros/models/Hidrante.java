@@ -15,19 +15,19 @@ public class Hidrante {
     private String statusAtividade;
     @ManyToOne
     @JoinColumn(nullable=false)
-    private Morador morador;
+    private Edificacao edificacao;
     
     public Hidrante() {
     } 
 
     public Hidrante(Integer id, String validade, String numeroPatrimonio, String dataUltimoTeste, String statusAtividade,
-            Morador morador) {
+            Edificacao edificacao) {
         this.id = id;
         this.validade = validade;
         this.numeroPatrimonio = numeroPatrimonio;
         this.dataUltimoTeste = dataUltimoTeste;
         this.statusAtividade = statusAtividade;
-        this.morador = morador;
+        this.edificacao = edificacao;
     }
 
     public Integer getId() {
@@ -61,12 +61,12 @@ public class Hidrante {
         this.statusAtividade = statusAtividade;
     }
 
-    public Morador getMorador() {
-        return morador;
+    public Edificacao getEdificacao() {
+        return edificacao;
     }
 
-    public void setMorador(Morador morador) {
-        this.morador = morador;
+    public void setEdificacao(Edificacao edificacao) {
+        this.edificacao = edificacao;
     }
 
 

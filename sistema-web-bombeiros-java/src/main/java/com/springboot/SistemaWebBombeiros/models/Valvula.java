@@ -11,15 +11,15 @@ public class Valvula {
     private String validade;
     @ManyToOne
     @JoinColumn(nullable=false)
-    private Morador morador;
+    private Edificacao edificacao;
     
     public Valvula() {
     }
    
-    public Valvula(Integer id, String validade, Morador morador) {
+    public Valvula(Integer id, String validade, Edificacao edificacao) {
         this.id = id;
         this.validade = validade;
-        this.morador = morador;
+        this.edificacao = edificacao;
     }
 
     public Integer getId() {
@@ -38,12 +38,12 @@ public class Valvula {
         this.validade = validade;
     }
 
-    public Morador getMorador() {
-        return morador;
+    public Edificacao getEdificacao() {
+        return edificacao;
     }
 
-    public void setMorador(Morador morador) {
-        this.morador = morador;
+    public void setEdificacao(Edificacao edificacao) {
+        this.edificacao = edificacao;
     }
     
     

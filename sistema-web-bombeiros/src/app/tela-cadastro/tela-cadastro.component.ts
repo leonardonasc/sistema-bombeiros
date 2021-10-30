@@ -1,4 +1,4 @@
-import { MoradoresService } from './../services/moradores.service';
+import { EdificacoesService } from '../services/edificacoes.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
@@ -12,7 +12,7 @@ interface Tipo {
   viewValue: string;
 }
 
-export interface CadastroMoradores {
+export interface CadastroEdificacoes {
   endereco: string;
   nome: string;
   telefone: number;
@@ -37,11 +37,11 @@ export class TelaCadastroComponent implements OnInit {
     'temBotijao',
     'qtdBotijao',
   ];
-  clickedRows = new Set<CadastroMoradores>();
+  clickedRows = new Set<CadastroEdificacoes>();
   serializedDate = new FormControl(new Date().toISOString());
   cep: string = '';
   clicado: boolean = false;
-  moradores: any;
+  edificacoes: any;
   dataSource = new MatTableDataSource([]);
   editar: boolean = false;
 
@@ -52,11 +52,11 @@ export class TelaCadastroComponent implements OnInit {
 
   constructor(
     private cepService: ViacepService,
-    private moradoresService: MoradoresService
+    private edificacoesService: EdificacoesService
   ) {}
 
   ngOnInit() {
-    this.getMoradores();
+    this.getEdificacoes();
   }
 
   formGroup = new FormGroup({
@@ -79,14 +79,27 @@ export class TelaCadastroComponent implements OnInit {
     tipoEdificacao: new FormControl('', [Validators.required]),
     temBotijao: new FormControl('', [Validators.required]),
     qtdBotijao: new FormControl(''),
-    tamanhoMangueira: new FormControl('', [Validators.required]),
-    modeloMangueira: new FormControl('', [Validators.required]),
-    validadeMangueira: new FormControl('', [Validators.required]),
+  });
+
+  formValvula = new FormGroup({
     validadeValvula: new FormControl('', [Validators.required]),
+
+  });
+
+  formMangueira = new FormGroup({
+    modeloMangueira: new FormControl('', [Validators.required]),
+    tamanhoMangueira: new FormControl('', [Validators.required]),
+    validadeMangueira: new FormControl('', [Validators.required]),
+  });
+
+  formHidrante = new FormGroup({
     validadeHidrante: new FormControl('', [Validators.required]),
     numeroPatrimonio: new FormControl('', [Validators.required]),
     ultimoTeste: new FormControl('', [Validators.required]),
     statusAtividade: new FormControl('', [Validators.required]),
+  });
+
+  formExtintor = new FormGroup({
     validadeExtintor: new FormControl('', [Validators.required]),
     modeloExtintor: new FormControl('', [Validators.required]),
     seloInmetro: new FormControl('', [Validators.required]),
@@ -104,28 +117,28 @@ export class TelaCadastroComponent implements OnInit {
     this.formGroup.controls.cidade.setValue(endereco.localidade);
   }
 
-  async getMoradores() {
-    this.moradores = await this.moradoresService.list();
-    this.dataSource = new MatTableDataSource(this.moradores);
-    // console.log(this.moradores);
+  async getEdificacoes() {
+    this.edificacoes = await this.edificacoesService.list();
+    this.dataSource = new MatTableDataSource(this.edificacoes);
+    // console.log(this.edificacoes);
   }
 
   async cadastrar() {
     if (this.formGroup.valid) {
       alert('Usuário cadastrado com sucesso.');
-      await this.moradoresService.create(this.formGroup.value);
+      await this.edificacoesService.create(this.formGroup.value);
       console.log(this.formGroup.value);
     }
   }
 
   async salvarCadastro() {
-    await this.moradoresService.update(this.formGroup.value);
+    await this.edificacoesService.update(this.formGroup.value);
     this.editar = false;
   }
 
   async deletar() {
     if (confirm("Deseja realmente excluir o cadastro?")) {
-      await this.moradoresService.delete(this.formGroup.controls.id.value);
+      await this.edificacoesService.delete(this.formGroup.controls.id.value);
       this.editar = false;
     }
   }

@@ -1,7 +1,7 @@
 package com.springboot.sistemawebbombeiros.controllers;
 
-import com.springboot.sistemawebbombeiros.models.Morador;
-import com.springboot.sistemawebbombeiros.repositories.MoradorRepository;
+import com.springboot.sistemawebbombeiros.models.Edificacao;
+import com.springboot.sistemawebbombeiros.repositories.EdificacaoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("moradores")
-public class MoradorController {
+@RequestMapping("edificacaoes")
+public class EdificacaoController {
     @Autowired
-    private MoradorRepository repositorio;
+    private EdificacaoRepository repositorio;
 
     @GetMapping
     public ResponseEntity<?> list() {
@@ -35,8 +35,8 @@ public class MoradorController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody() Morador morador) {
-        Morador usuarioCriado = this.repositorio.save(morador);
+    public ResponseEntity<?> create(@RequestBody() Edificacao edificacao) {
+        Edificacao usuarioCriado = this.repositorio.save(edificacao);
         return new ResponseEntity<>(usuarioCriado, HttpStatus.CREATED);
     }
 
@@ -51,9 +51,9 @@ public class MoradorController {
     }    
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody() Morador morador) {
-        if (morador.getId() != null && id.equals(morador.getId())) {
-            return ResponseEntity.ok(this.repositorio.save(morador));
+    public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody() Edificacao edificacao) {
+        if (edificacao.getId() != null && id.equals(edificacao.getId())) {
+            return ResponseEntity.ok(this.repositorio.save(edificacao));
         } else {
             return new ResponseEntity<>("Parâmetros inválidos", HttpStatus.BAD_REQUEST);
         }

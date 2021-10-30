@@ -1,4 +1,4 @@
-export interface Morador {
+export interface Edificacao {
   id?: number;
   nome: string;
   cpf: string;

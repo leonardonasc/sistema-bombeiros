@@ -4,5 +4,5 @@ export interface Hidrante {
   numeroPatrimonio: string;
   dataUltimoTeste: string;
   statusAtividade: string;
-  morador: number;
+  edificacao: number;
 }
