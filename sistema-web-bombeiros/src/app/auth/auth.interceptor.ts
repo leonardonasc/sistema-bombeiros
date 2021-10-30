@@ -37,8 +37,10 @@ export class AuthInterceptor implements HttpInterceptor {
   private checkUrl(req: HttpRequest<any>) {
     if (
       req.url.toString().includes('login') ||
-      (req.url.toString().includes('users') && req.method == 'POST')
+      (req.url.toString().includes('users') && req.method == 'POST') ||
+      req.url.toString().includes('https://viacep.com.br/ws')
     )
+
       return false;
     return true;
   }

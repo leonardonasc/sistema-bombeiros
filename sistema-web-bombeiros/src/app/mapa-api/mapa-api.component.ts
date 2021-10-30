@@ -1,4 +1,4 @@
-import { EdificacoesService } from '../services/edificacoes.service';
+import { EdificacoesService } from './../services/edificacoes.service';
 import { Component, OnInit } from '@angular/core';
 import { Feature, View } from 'ol';
 import Map from 'ol/Map';

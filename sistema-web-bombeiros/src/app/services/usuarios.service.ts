@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../models/Usuario';
@@ -12,7 +12,7 @@ export class UsuariosService {
   constructor(private http: HttpClient) {}
 
   async create(usuario: Usuario): Promise<Usuario> {
-    return this.http.post<Usuario>(this.url, usuario).toPromise();
+    return this.http.post<Usuario>(environment.backendUrl, usuario).toPromise();
   }
 
   async read(id: number): Promise<Usuario> {

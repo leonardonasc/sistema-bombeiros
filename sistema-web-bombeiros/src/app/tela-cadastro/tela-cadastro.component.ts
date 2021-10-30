@@ -1,3 +1,7 @@
+import { ValvulasService } from './../services/valvulas.service';
+import { MangueirasService } from './../services/mangueiras.service';
+import { HidrantesService } from './../services/hidrantes.service';
+import { ExtintoresService } from './../services/extintores.service';
 import { EdificacoesService } from '../services/edificacoes.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -52,7 +56,11 @@ export class TelaCadastroComponent implements OnInit {
 
   constructor(
     private cepService: ViacepService,
-    private edificacoesService: EdificacoesService
+    private edificacoesService: EdificacoesService,
+    private extintoresService: ExtintoresService,
+    private hidrantesService: HidrantesService,
+    private mangueirasService: MangueirasService,
+    private valvulasServies: ValvulasService
   ) {}
 
   ngOnInit() {
@@ -82,17 +90,20 @@ export class TelaCadastroComponent implements OnInit {
   });
 
   formValvula = new FormGroup({
+    id: new FormControl(),
     validadeValvula: new FormControl('', [Validators.required]),
 
   });
 
   formMangueira = new FormGroup({
+    id: new FormControl(),
     modeloMangueira: new FormControl('', [Validators.required]),
     tamanhoMangueira: new FormControl('', [Validators.required]),
     validadeMangueira: new FormControl('', [Validators.required]),
   });
 
   formHidrante = new FormGroup({
+    id: new FormControl(),
     validadeHidrante: new FormControl('', [Validators.required]),
     numeroPatrimonio: new FormControl('', [Validators.required]),
     ultimoTeste: new FormControl('', [Validators.required]),
@@ -100,6 +111,7 @@ export class TelaCadastroComponent implements OnInit {
   });
 
   formExtintor = new FormGroup({
+    id: new FormControl(),
     validadeExtintor: new FormControl('', [Validators.required]),
     modeloExtintor: new FormControl('', [Validators.required]),
     seloInmetro: new FormControl('', [Validators.required]),
@@ -126,8 +138,14 @@ export class TelaCadastroComponent implements OnInit {
   async cadastrar() {
     if (this.formGroup.valid) {
       alert('Usuário cadastrado com sucesso.');
-      await this.edificacoesService.create(this.formGroup.value);
-      console.log(this.formGroup.value);
+      const edificacao = await this.edificacoesService.create(this.formGroup.value);
+      const extintor = this.formExtintor.value;
+      extintor.edificacao = edificacao.id;
+      await this.extintoresService.create(extintor);
+      await this.hidrantesService.create(this.formHidrante.value);
+      await this.mangueirasService.create(this.formMangueira.value);
+      await this.valvulasServies.create(this.formValvula.value);
+      // console.log(this.formGroup.value);
     }
   }
 
@@ -144,7 +162,6 @@ export class TelaCadastroComponent implements OnInit {
   }
 
   carregaNaTela(row: any) {
-    console.log(row)
     this.editar = true;
     this.formGroup.controls.id.setValue(row.id);
     this.formGroup.controls.nome.setValue(row.nome);
@@ -161,19 +178,19 @@ export class TelaCadastroComponent implements OnInit {
     this.formGroup.controls.tipoEdificacao.setValue(row.tipoEdificacao);
     this.formGroup.controls.temBotijao.setValue(row.temBotijao);
     this.formGroup.controls.qtdBotijao.setValue(row.qtdBotijao);
-    this.formGroup.controls.tamanhoMangueira.setValue(row.tamanhoMangueira);
-    this.formGroup.controls.modeloMangueira.setValue(row.modeloMangueira);
-    this.formGroup.controls.validadeMangueira.setValue(row.validadeMangueira);
-    this.formGroup.controls.validadeValvula.setValue(row.validadeValvula);
-    this.formGroup.controls.validadeHidrante.setValue(row.validadeHidrante);
-    this.formGroup.controls.numeroPatrimonio.setValue(row.numeroPatrimonio);
-    this.formGroup.controls.ultimoTeste.setValue(row.ultimoTeste);
-    this.formGroup.controls.statusAtividade.setValue(row.statusAtividade);
-    this.formGroup.controls.validadeExtintor.setValue(row.validadeExtintor);
-    this.formGroup.controls.modeloExtintor.setValue(row.modeloExtintor);
-    this.formGroup.controls.seloInmetro.setValue(row.seloInmetro);
-    this.formGroup.controls.pesoExtintor.setValue(row.pesoExtintor);
-    this.formGroup.controls.anoExpecao.setValue(row.anoExpecao);
+    this.formMangueira.controls.tamanhoMangueira.setValue(row.tamanhoMangueira);
+    this.formMangueira.controls.modeloMangueira.setValue(row.modeloMangueira);
+    this.formMangueira.controls.validadeMangueira.setValue(row.validadeMangueira);
+    this.formValvula.controls.validadeValvula.setValue(row.validadeValvula);
+    this.formHidrante.controls.validadeHidrante.setValue(row.validadeHidrante);
+    this.formHidrante.controls.numeroPatrimonio.setValue(row.numeroPatrimonio);
+    this.formHidrante.controls.ultimoTeste.setValue(row.ultimoTeste);
+    this.formHidrante.controls.statusAtividade.setValue(row.statusAtividade);
+    this.formExtintor.controls.validadeExtintor.setValue(row.validadeExtintor);
+    this.formExtintor.controls.modeloExtintor.setValue(row.modeloExtintor);
+    this.formExtintor.controls.seloInmetro.setValue(row.seloInmetro);
+    this.formExtintor.controls.pesoExtintor.setValue(row.pesoExtintor);
+    this.formExtintor.controls.anoExpecao.setValue(row.anoExpecao);
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

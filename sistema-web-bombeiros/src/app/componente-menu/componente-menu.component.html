@@ -12,13 +12,13 @@
           <img src="../../assets/dashboard.png" alt="" width="32px">
           <span>Dashboard</span>
         </li>
-        <li class="menu-lateral" routerLink="cadastro">
+        <li class="menu-lateral" routerLink="cadastros">
           <img src="../../assets/icone-edificacao.png" alt="" width="32px">
           <span>Edificações</span></li>
-        <li class="menu-lateral" routerLink="relatorio">
+        <li class="menu-lateral" routerLink="relatorios">
           <img src="../../assets/icone-relatorio.png" alt="" width="32px">
           <span>Relatórios</span></li>
-        <li class="menu-lateral" routerLink="usuario"><img src="../../assets/icone-usuario.png"
+        <li class="menu-lateral" routerLink="usuarios"><img src="../../assets/icone-usuario.png"
             width="32px"><span>Usuários</span></li>
       </ul>
       <ul>
@@ -36,17 +36,17 @@
         <img src="../../assets/dashboard.png" alt="" width="32px">
         <span>Dashboard</span>
       </li>
-      <li class="menu-lateral" routerLink="cadastro" id="cadastro">
+      <li class="menu-lateral" routerLink="cadastros" id="cadastro">
         <img src="../../assets/icone-edificacao.png" alt="" width="32px">
         <span>Edificações</span></li>
-      <li class="menu-lateral" routerLink="relatorio" id="relatorio">
+      <li class="menu-lateral" routerLink="relatorios" id="relatorio">
         <img src="../../assets/icone-relatorio.png" alt="" width="32px">
         <span>Relatórios</span></li>
-      <li class="menu-lateral" routerLink="usuario" id="usuario"><img src="../../assets/icone-usuario.png" alt=""
+      <li class="menu-lateral" routerLink="usuarios" id="usuario"><img src="../../assets/icone-usuario.png" alt=""
           width="32px"><span>Usuários</span></li>
     </ul>
     <ul>
-      <li class="logout menu-lateral" routerLink=""><img src="../../assets/icone-logout.png" alt=""
+      <li class="logout menu-lateral" (click)="logout()"><img src="../../assets/icone-logout.png" alt=""
           width="32px"><span>Logout</span></li>
     </ul>
   </div>

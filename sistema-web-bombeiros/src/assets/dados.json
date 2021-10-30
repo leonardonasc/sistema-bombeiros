@@ -3647,6 +3647,23 @@
       "anoExpecao": 2021,
       "longitude": -48.63634586334227,
       "latitude": -27.629512893219626
+    },
+    {
+      "id": 115,
+      "nome": "Leoncio Maluco Doido",
+      "cep": "88102020",
+      "endereco": "Rua do Joaozinho",
+      "numEndereco": "132",
+      "bairro": "Kobrasol",
+      "cidade": "São José",
+      "telefone1": "48999999999",
+      "telefone2": "",
+      "cpf": "00010203012",
+      "email": "leoncio@email.com",
+      "numMoradores": 2,
+      "tipoEdificacao": "Residencial",
+      "temBotijao": "Sim",
+      "qtdBotijao": ""
     }
   ],
   "usuarios": [
@@ -3786,5 +3803,9 @@
       "email": "rafael.lima@bombeiros.sc.com.br",
       "perfilAcesso": "Cobom"
     }
-  ]
+  ],
+  "extintor": [],
+  "hidrante": [],
+  "mangueira": [],
+  "valvula": []
 }

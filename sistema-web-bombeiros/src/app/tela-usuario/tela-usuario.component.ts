@@ -25,7 +25,7 @@ export interface CadastroUsuarios {
   styleUrls: ['./tela-usuario.component.scss'],
 })
 export class TelaUsuarioComponent implements OnInit {
-  constructor(private usuariosService: UsuariosService) {}
+  constructor(private usuariosService: UsuariosService,) {}
 
   displayedColumns: string[] = [
     'nome',
