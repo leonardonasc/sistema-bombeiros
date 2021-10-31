@@ -17,15 +17,14 @@ public class DataGenerator {
         return args -> {
             if (usuarioRepository.count() == 0) {
                 Usuario usuario = new Usuario();
-                usuario.setNome("Noah Caua Felipe Mathias");
-                usuario.setMatricula("70213");
+                usuario.setNome("Leonardo Schmidt");
+                usuario.setMatricula("admin");
                 usuario.setSenha(passwordEncoder.encode("admin"));
-                usuario.setEmail("noah.rocha@bombeiros.sc.com.br");
+                usuario.setEmail("leonardo@bombeiros.sc.com.br");
                 usuario.setPerfilAcesso("ADMINISTRADOR");
                 usuarioRepository.save(usuario);
                 System.out.println("Id usuario: " + usuario.getId());
             }
-
         };
 
     }

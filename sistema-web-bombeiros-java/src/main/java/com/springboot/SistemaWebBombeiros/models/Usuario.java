@@ -33,7 +33,7 @@ public class Usuario {
     public Collection<? extends GrantedAuthority> getAuthorities(Usuario usuario) {
         List<GrantedAuthority> authorities = new ArrayList();
         if (usuario.getPerfilAcesso().equals("Administrador")) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMINISTRADOR"));
             authorities.add(new SimpleGrantedAuthority("ROLE_MONITORAMENTO"));
             authorities.add(new SimpleGrantedAuthority("ROLE_COBOM"));
         } else if (usuario.getPerfilAcesso().equals("Monitoramento")) {

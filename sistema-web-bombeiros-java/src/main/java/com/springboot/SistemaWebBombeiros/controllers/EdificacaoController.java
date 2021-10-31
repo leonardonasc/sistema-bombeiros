@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("edificacaoes")
+@RequestMapping("cadastros")
 public class EdificacaoController {
     @Autowired
     private EdificacaoRepository repositorio;
@@ -48,7 +48,7 @@ public class EdificacaoController {
         finally {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-    }    
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody() Edificacao edificacao) {
