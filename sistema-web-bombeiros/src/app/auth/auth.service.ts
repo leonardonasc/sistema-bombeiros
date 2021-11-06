@@ -14,12 +14,9 @@ export class AuthService {
   url = `${environment.backendUrl}/login`;
 
   async createToken(request: JwtRequest) {
-    const authentication = await this.http
-      .post<Token>(this.url, request)
-      .toPromise();
+    const authentication = await this.http.post<Token>(this.url, request).toPromise();
     this.storeToken(authentication);
     this.saveUser(authentication.user);
-
 
     return authentication;
   }

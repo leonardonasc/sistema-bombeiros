@@ -7,12 +7,12 @@ import { Usuario } from '../models/Usuario';
   providedIn: 'root',
 })
 export class UsuariosService {
-  url: string = `${environment.urlApi}/usuarios`;
+  url: string = `${environment.backendUrl}/usuarios`;
 
   constructor(private http: HttpClient) {}
 
   async create(usuario: Usuario): Promise<Usuario> {
-    return this.http.post<Usuario>(environment.backendUrl, usuario).toPromise();
+    return this.http.post<Usuario>(this.url, usuario).toPromise();
   }
 
   async read(id: number): Promise<Usuario> {

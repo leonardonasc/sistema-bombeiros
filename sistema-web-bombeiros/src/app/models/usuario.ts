@@ -3,7 +3,6 @@ export interface Usuario {
   nome: string;
   matricula: string;
   nomeDeGuerra: string;
-  senha: string;
   email: string;
   perfilAcesso: string;
 }

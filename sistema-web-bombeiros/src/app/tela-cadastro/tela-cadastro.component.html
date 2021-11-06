@@ -237,6 +237,7 @@
                   <div class="objetos">
                     <div class="campos-objeto">
                       <mat-form-field appearance="fill" class="input-campos">
+                        <input formControlName="id" type="hidden" />
                         <mat-label>Selecione a validade</mat-label>
                         <input
                           matInput
@@ -249,7 +250,9 @@
                         ></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error
-                          *ngIf="formMangueira.controls.validadeMangueira.invalid"
+                          *ngIf="
+                            formMangueira.controls.validadeMangueira.invalid
+                          "
                           >Preencha uma data válida
                         </mat-error>
                       </mat-form-field>
@@ -277,7 +280,9 @@
                           placeholder="Tamanho em metros"
                         />
                         <mat-error
-                          *ngIf="formMangueira.controls.tamanhoMangueira.invalid"
+                          *ngIf="
+                            formMangueira.controls.tamanhoMangueira.invalid
+                          "
                           >Preencha o tamanho da mangueira
                         </mat-error>
                       </mat-form-field>
@@ -291,6 +296,7 @@
                   <div class="objetos">
                     <div class="campos-objeto valvula">
                       <mat-form-field appearance="fill" class="input-campos">
+                        <input formControlName="id" type="hidden" />
                         <mat-label>Selecione a validade</mat-label>
                         <input
                           matInput
@@ -317,6 +323,7 @@
                   <div class="objetos">
                     <div class="campos-objeto">
                       <mat-form-field appearance="fill" class="input-campos">
+                        <input formControlName="id" type="hidden" />
                         <mat-label>Selecione a validade</mat-label>
                         <input
                           matInput
@@ -392,70 +399,72 @@
               <!-- hidrante -->
               <mat-tab label="Hidrante de Parede">
                 <form [formGroup]="formHidrante">
-                <div class="objetos">
-                  <div class="campos-objeto">
-                    <mat-form-field appearance="fill" class="input-campos">
-                      <mat-label>Selecione a validade</mat-label>
-                      <input
-                        matInput
-                        [matDatepicker]="picker3"
-                        formControlName="validadeHidrante"
-                      />
-                      <mat-datepicker-toggle
-                        matSuffix
-                        [for]="picker3"
-                      ></mat-datepicker-toggle>
-                      <mat-datepicker #picker3></mat-datepicker>
-                      <mat-error
-                        *ngIf="formHidrante.controls.validadeHidrante.invalid"
-                        >Selecione a validade do hidrante
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill" class="input-campos">
-                      <mat-label>Número Patrimonio</mat-label>
-                      <input
-                        matInput
-                        type="text"
-                        formControlName="numeroPatrimonio"
-                      />
-                      <mat-error
-                        *ngIf="formHidrante.controls.numeroPatrimonio.invalid"
-                        >Preencha o número de patrimônio.
-                      </mat-error>
-                    </mat-form-field>
+                  <div class="objetos">
+                    <div class="campos-objeto">
+                      <mat-form-field appearance="fill" class="input-campos">
+                        <input formControlName="id" type="hidden" />
+                        <mat-label>Selecione a validade</mat-label>
+                        <input
+                          matInput
+                          [matDatepicker]="picker3"
+                          formControlName="validadeHidrante"
+                        />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="picker3"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                        <mat-error
+                          *ngIf="formHidrante.controls.validadeHidrante.invalid"
+                          >Selecione a validade do hidrante
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill" class="input-campos">
+                        <mat-label>Número Patrimonio</mat-label>
+                        <input
+                          matInput
+                          type="text"
+                          formControlName="numeroPatrimonio"
+                        />
+                        <mat-error
+                          *ngIf="formHidrante.controls.numeroPatrimonio.invalid"
+                          >Preencha o número de patrimônio.
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="campos-objeto">
+                      <mat-form-field appearance="fill" class="input-campos">
+                        <mat-label>Data do ultimo teste</mat-label>
+                        <input
+                          matInput
+                          [matDatepicker]="picker4"
+                          formControlName="ultimoTeste"
+                        />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="picker4"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                        <mat-error
+                          *ngIf="formHidrante.controls.ultimoTeste.invalid"
+                          >Selecione a data de último teste do hidrante
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill" class="input-campos">
+                        <mat-label>Status Atividade</mat-label>
+                        <input
+                          matInput
+                          type="text"
+                          formControlName="statusAtividade"
+                        />
+                        <mat-error
+                          *ngIf="formHidrante.controls.statusAtividade.invalid"
+                          >Preencha o status da atividade
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
                   </div>
-                  <div class="campos-objeto">
-                    <mat-form-field appearance="fill" class="input-campos">
-                      <mat-label>Data do ultimo teste</mat-label>
-                      <input
-                        matInput
-                        [matDatepicker]="picker4"
-                        formControlName="ultimoTeste"
-                      />
-                      <mat-datepicker-toggle
-                        matSuffix
-                        [for]="picker4"
-                      ></mat-datepicker-toggle>
-                      <mat-datepicker #picker4></mat-datepicker>
-                      <mat-error *ngIf="formHidrante.controls.ultimoTeste.invalid"
-                        >Selecione a data de último teste do hidrante
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill" class="input-campos">
-                      <mat-label>Status Atividade</mat-label>
-                      <input
-                        matInput
-                        type="text"
-                        formControlName="statusAtividade"
-                      />
-                      <mat-error
-                        *ngIf="formHidrante.controls.statusAtividade.invalid"
-                        >Preencha o status da atividade
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </form>
+                </form>
               </mat-tab>
             </mat-tab-group>
           </mat-tab>

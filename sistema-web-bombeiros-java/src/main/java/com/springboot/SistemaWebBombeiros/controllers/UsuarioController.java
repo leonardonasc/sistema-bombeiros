@@ -8,16 +8,11 @@ import com.springboot.sistemawebbombeiros.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("usuarios")
 public class UsuarioController {
     @Autowired
@@ -42,6 +37,8 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody() Usuario usuario) {
+        String password = BCrypt.hashpw(usuario.getSenha(), BCrypt.gensalt(12));
+        usuario.setSenha(password);
         Usuario usuarioCriado = this.repositorio.save(usuario);
         return new ResponseEntity<>(usuarioCriado, HttpStatus.CREATED);
     }
@@ -59,6 +56,8 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody() Usuario usuario) {
         if (usuario.getId() != null && id.equals(usuario.getId())) {
+            String password = BCrypt.hashpw(usuario.getSenha(), BCrypt.gensalt(12));
+            usuario.setSenha(password);
             return ResponseEntity.ok(this.repositorio.save(usuario));
         } else {
             return new ResponseEntity<>("Parâmetros inválidos", HttpStatus.BAD_REQUEST);

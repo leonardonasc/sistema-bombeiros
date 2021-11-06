@@ -3,6 +3,7 @@ package com.springboot.sistemawebbombeiros.controllers;
 import com.springboot.sistemawebbombeiros.models.JwtRequest;
 import com.springboot.sistemawebbombeiros.models.JwtResponse;
 import com.springboot.sistemawebbombeiros.models.Usuario;
+import com.springboot.sistemawebbombeiros.models.UsuarioResponse;
 import com.springboot.sistemawebbombeiros.security.JwtTokenUtil;
 import com.springboot.sistemawebbombeiros.service.JwtUserDetailsService;
 import com.springboot.sistemawebbombeiros.repositories.UsuarioRepository;
@@ -35,7 +36,8 @@ public class JwtAuthenticationController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         Usuario usuario = usuarioRepository.findByMatricula(authenticationRequest.getUsername());
-        return ResponseEntity.ok(new JwtResponse(token));
+        UsuarioResponse usuarioResponse = new UsuarioResponse(usuario.getId(), usuario.getNome(), usuario.getMatricula(), usuario.getNomeDeGuerra(), usuario.getEmail(), usuario.getPerfilAcesso());
+        return ResponseEntity.ok(new JwtResponse(token, usuarioResponse));
     }
 
     private void authenticate(String username, String password) throws Exception {

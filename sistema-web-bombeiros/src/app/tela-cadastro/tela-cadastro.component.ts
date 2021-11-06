@@ -140,12 +140,18 @@ export class TelaCadastroComponent implements OnInit {
       alert('Usuário cadastrado com sucesso.');
       const edificacao = await this.edificacoesService.create(this.formGroup.value);
       const extintor = this.formExtintor.value;
+      const hidrante = this.formHidrante.value;
+      const mangueira = this.formMangueira.value;
+      const valvula = this.formValvula.value;
       extintor.edificacao = edificacao.id;
+      hidrante.edificacao = edificacao.id;
+      mangueira.edificacao = edificacao.id;
+      valvula.edificacao = edificacao.id;
       await this.extintoresService.create(extintor);
-      await this.hidrantesService.create(this.formHidrante.value);
-      await this.mangueirasService.create(this.formMangueira.value);
-      await this.valvulasServies.create(this.formValvula.value);
-      // console.log(this.formGroup.value);
+      await this.hidrantesService.create(hidrante);
+      await this.mangueirasService.create(mangueira);
+      await this.valvulasServies.create(valvula);
+      console.log(valvula);
     }
   }
 

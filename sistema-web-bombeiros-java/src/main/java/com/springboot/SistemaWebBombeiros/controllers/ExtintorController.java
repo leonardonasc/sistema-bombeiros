@@ -32,8 +32,9 @@ public class ExtintorController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody() Extintor extintor) {
-        Extintor usuarioCriado = this.repositorio.save(extintor);
-        return new ResponseEntity<>(usuarioCriado, HttpStatus.CREATED);
+        System.out.println(extintor.getEdificacao());
+        Extintor extintorCriado = this.repositorio.save(extintor);
+        return new ResponseEntity<>(extintorCriado, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

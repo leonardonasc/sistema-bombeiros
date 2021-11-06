@@ -8,8 +8,8 @@ public class JwtRequest {
     }
     
     public JwtRequest(String username, String password) {
-        this.username = username;
-        this.password = password;
+        this.setUsername(username);
+        this.setPassword(password);
     }
 
     public String getUsername() {

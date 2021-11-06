@@ -1,5 +1,6 @@
 package com.springboot.sistemawebbombeiros.service;
 
+import com.springboot.sistemawebbombeiros.models.Usuario;
 import com.springboot.sistemawebbombeiros.repositories.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String matricula) throws UsernameNotFoundException {
-        com.springboot.sistemawebbombeiros.models.Usuario user = usuarioRepository.findByMatricula(matricula);
+        Usuario user = usuarioRepository.findByMatricula(matricula);
         if (user.getMatricula().equals(matricula)) {
             return new User(matricula, user.getSenha(), true, true, true, true, user.getAuthorities(user));
         } else {
