@@ -28,7 +28,7 @@ public class Edificacao {
     @Column(nullable=false)
     private String tipoEdificacao;
     @Column(nullable=false)
-    private Integer numeroEdificacoes;
+    private Integer numeroMoradores;
     @Column(nullable=false)
     private String temBotijao;
     @Column(nullable = true)
@@ -41,7 +41,7 @@ public class Edificacao {
 
     public Edificacao(Integer id, String nome, String cpf, String email, String telefone1, String telefone2, String cep,
             String endereco, String numeroEndereco, String bairro, String cidade, String tipoEdificacao,
-            Integer numeroEdificacoes, String temBotijao, Integer qtdBotijao, String longitude, String latitude) {
+            Integer numeroMoradores, String temBotijao, Integer qtdBotijao, String longitude, String latitude) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -54,7 +54,7 @@ public class Edificacao {
         this.bairro = bairro;
         this.cidade = cidade;
         this.tipoEdificacao = tipoEdificacao;
-        this.numeroEdificacoes = numeroEdificacoes;
+        this.numeroMoradores = numeroMoradores;
         this.temBotijao = temBotijao;
         this.qtdBotijao = qtdBotijao;
         this.longitude = longitude;
@@ -157,12 +157,12 @@ public class Edificacao {
         this.tipoEdificacao = tipoEdificacao;
     }
 
-    public Integer getNumeroEdificacoes() {
-        return numeroEdificacoes;
+    public Integer getNumeroMoradores() {
+        return numeroMoradores;
     }
 
-    public void setNumeroEdificacoes(Integer numeroEdificacoes) {
-        this.numeroEdificacoes = numeroEdificacoes;
+    public void setNumeroMoradores(Integer numeroMoradores) {
+        this.numeroMoradores = numeroMoradores;
     }
 
     public String getTemBotijao() {

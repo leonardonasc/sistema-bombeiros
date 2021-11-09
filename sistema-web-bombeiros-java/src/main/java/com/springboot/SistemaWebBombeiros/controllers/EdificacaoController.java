@@ -6,16 +6,10 @@ import com.springboot.sistemawebbombeiros.repositories.EdificacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("cadastros")
 public class EdificacaoController {
     @Autowired
@@ -25,6 +19,7 @@ public class EdificacaoController {
     public ResponseEntity<?> list() {
         return ResponseEntity.ok(this.repositorio.findAll());
     }
+
     @GetMapping("findByNome/{nome}")
     public ResponseEntity<?> listByNome(@PathVariable("nome") String nome) {
         return ResponseEntity.ok(this.repositorio.findByNomeIgnoreCaseContaining(nome));
@@ -34,10 +29,11 @@ public class EdificacaoController {
         return ResponseEntity.ok(this.repositorio.findById(id));
     }
 
+    @CrossOrigin("*")
     @PostMapping
     public ResponseEntity<?> create(@RequestBody() Edificacao edificacao) {
-        Edificacao usuarioCriado = this.repositorio.save(edificacao);
-        return new ResponseEntity<>(usuarioCriado, HttpStatus.CREATED);
+        Edificacao edificacaoCriado = this.repositorio.save(edificacao);
+        return new ResponseEntity<>(edificacaoCriado, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
