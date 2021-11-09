@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class MangueirasService {
-  url: string = `${environment.urlApi}/mangueiras"`;
+  url: string = `${environment.backendUrl}/mangueiras"`;
 
   constructor(private http: HttpClient) {}
 

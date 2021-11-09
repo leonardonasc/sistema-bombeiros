@@ -63,7 +63,6 @@ export class TelaUsuarioComponent implements OnInit {
     } else if (this.formGroup.valid) {
       alert('Usuário cadastrado com sucesso.');
       await this.usuariosService.create(this.formGroup.value);
-      console.log(this.formGroup.value);
     }
   }
 

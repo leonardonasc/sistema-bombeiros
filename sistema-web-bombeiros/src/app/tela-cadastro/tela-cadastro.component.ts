@@ -36,7 +36,7 @@ export class TelaCadastroComponent implements OnInit {
     'nome',
     'endereco',
     'telefone1',
-    'numMoradores',
+    'numeroMoradores',
     'tipoEdificacao',
     'temBotijao',
     'qtdBotijao',
@@ -72,7 +72,7 @@ export class TelaCadastroComponent implements OnInit {
     nome: new FormControl('', [Validators.required, nomeCompleto()]),
     cep: new FormControl('', [Validators.required]),
     endereco: new FormControl('', [Validators.required]),
-    numEndereco: new FormControl('', [Validators.required]),
+    numeroEndereco: new FormControl('', [Validators.required]),
     bairro: new FormControl('', [Validators.required]),
     cidade: new FormControl('', [Validators.required]),
     telefone1: new FormControl('', [Validators.required]),
@@ -83,7 +83,7 @@ export class TelaCadastroComponent implements OnInit {
       Validators.maxLength(11),
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    numMoradores: new FormControl('', [Validators.required]),
+    numeroMoradores: new FormControl('', [Validators.required]),
     tipoEdificacao: new FormControl('', [Validators.required]),
     temBotijao: new FormControl('', [Validators.required]),
     qtdBotijao: new FormControl(''),
@@ -137,7 +137,7 @@ export class TelaCadastroComponent implements OnInit {
 
   async cadastrar() {
     if (this.formGroup.valid) {
-      alert('Usuário cadastrado com sucesso.');
+      // alert('Usuário cadastrado com sucesso.');
       const edificacao = await this.edificacoesService.create(this.formGroup.value);
       const extintor = this.formExtintor.value;
       const hidrante = this.formHidrante.value;
@@ -147,11 +147,11 @@ export class TelaCadastroComponent implements OnInit {
       hidrante.edificacao = edificacao.id;
       mangueira.edificacao = edificacao.id;
       valvula.edificacao = edificacao.id;
-      await this.extintoresService.create(extintor);
+      console.log(extintor);
+      const cons = await this.extintoresService.create(extintor);
       await this.hidrantesService.create(hidrante);
       await this.mangueirasService.create(mangueira);
       await this.valvulasServies.create(valvula);
-      console.log(valvula);
     }
   }
 

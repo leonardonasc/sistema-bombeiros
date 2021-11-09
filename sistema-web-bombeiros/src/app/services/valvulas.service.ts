@@ -7,7 +7,7 @@ import { Valvula } from '../models/Valvula';
   providedIn: 'root'
 })
 export class ValvulasService {
-  url: string = `${environment.urlApi}/valvulas"`;
+  url: string = `${environment.backendUrl}/valvulas"`;
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class HidrantesService {
-  url: string = `${environment.urlApi}/hidrantes"`;
+  url: string = `${environment.backendUrl}/hidrantes"`;
 
   constructor(private http: HttpClient) {}
 

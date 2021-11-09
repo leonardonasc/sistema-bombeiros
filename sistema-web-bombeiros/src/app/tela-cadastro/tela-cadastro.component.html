@@ -129,10 +129,10 @@
                       <div class="campos-form">
                         <mat-form-field class="input-campos" appearance="fill">
                           <mat-label>Número</mat-label>
-                          <input matInput formControlName="numEndereco" />
+                          <input matInput formControlName="numeroEndereco" />
                           <mat-error
                             *ngIf="
-                              formGroup.controls.numEndereco.invalid && clicado
+                              formGroup.controls.numeroEndereco.invalid && clicado
                             "
                             >Informe o número correto
                           </mat-error>
@@ -185,10 +185,10 @@
                           <input
                             matInput
                             type="number"
-                            formControlName="numMoradores"
+                            formControlName="numeroMoradores"
                           />
                           <mat-error
-                            *ngIf="formGroup.controls.numMoradores.invalid"
+                            *ngIf="formGroup.controls.numeroMoradores.invalid"
                             >Preencha o número de edificacoes
                           </mat-error>
                         </mat-form-field>
@@ -537,10 +537,10 @@
           </ng-container>
 
           <!-- numMoradores Column -->
-          <ng-container matColumnDef="numMoradores">
+          <ng-container matColumnDef="numeroMoradores">
             <th mat-header-cell *matHeaderCellDef>Núm. Moradores</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.numMoradores }}
+              {{ element.numeroMoradores }}
             </td>
           </ng-container>
 

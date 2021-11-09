@@ -7,7 +7,7 @@ import { Extintor } from '../models/Extintor';
   providedIn: 'root'
 })
 export class ExtintoresService {
-  url: string = `${environment.urlApi}/extintores"`;
+  url: string = `${environment.backendUrl}/extintores`;
 
   constructor(private http: HttpClient) {}
 
