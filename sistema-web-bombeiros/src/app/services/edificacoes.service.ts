@@ -7,13 +7,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class EdificacoesService {
-  url: string = `${environment.backendUrl}/edificacoes`;
+  url: string = `${environment.backendUrl}/cadastros`;
   urlBack: string = `${environment.backendUrl}/cadastros`;
 
   constructor(private http: HttpClient) {}
 
   async create(edificacao: Edificacao): Promise<Edificacao> {
-    return this.http.post<Edificacao>(this.urlBack, edificacao).toPromise();
+    return this.http.post<Edificacao>(this.url, edificacao).toPromise();
   }
 
   async read(id: number): Promise<Edificacao> {
@@ -31,6 +31,6 @@ export class EdificacoesService {
   }
 
   async list(): Promise<Edificacao[]> {
-    return this.http.get<Edificacao[]>(`${this.urlBack}`).toPromise();
+    return this.http.get<Edificacao[]>(`${this.url}`).toPromise();
   }
 }

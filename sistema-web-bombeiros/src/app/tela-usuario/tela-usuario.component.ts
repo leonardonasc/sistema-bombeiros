@@ -63,6 +63,7 @@ export class TelaUsuarioComponent implements OnInit {
     } else if (this.formGroup.valid) {
       alert('Usuário cadastrado com sucesso.');
       await this.usuariosService.create(this.formGroup.value);
+      window.location.reload();
     }
   }
 
@@ -70,6 +71,7 @@ export class TelaUsuarioComponent implements OnInit {
     if (confirm("Deseja realmente excluir o cadastro?")){
       await this.usuariosService.delete(this.formGroup.controls.id.value);
       this.editar = false;
+      window.location.reload();
     }
   }
 
@@ -86,6 +88,7 @@ export class TelaUsuarioComponent implements OnInit {
   async salvarCadastro() {
     await this.usuariosService.update(this.formGroup.value);
     this.editar = false;
+    window.location.reload();
   }
 
   applyFilter(event: Event) {

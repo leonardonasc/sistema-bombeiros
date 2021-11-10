@@ -11,6 +11,8 @@
                     <div class="container-1">
                       <div class="campos-form">
                         <input type="hidden" formControlName="id" />
+                        <input type="hidden" formControlName="latitude" />
+                        <input type="hidden" formControlName="longitude" />
                         <mat-form-field
                           class="input-edificacoes"
                           appearance="fill"
@@ -132,7 +134,8 @@
                           <input matInput formControlName="numeroEndereco" />
                           <mat-error
                             *ngIf="
-                              formGroup.controls.numeroEndereco.invalid && clicado
+                              formGroup.controls.numeroEndereco.invalid &&
+                              clicado
                             "
                             >Informe o número correto
                           </mat-error>
@@ -242,7 +245,7 @@
                         <input
                           matInput
                           [matDatepicker]="picker"
-                          formControlName="validadeMangueira"
+                          formControlName="validade"
                         />
                         <mat-datepicker-toggle
                           matSuffix
@@ -250,15 +253,13 @@
                         ></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error
-                          *ngIf="
-                            formMangueira.controls.validadeMangueira.invalid
-                          "
+                          *ngIf="formMangueira.controls.validade.invalid"
                           >Preencha uma data válida
                         </mat-error>
                       </mat-form-field>
                       <mat-form-field appearance="fill" class="input-campos">
                         <mat-label>Modelo</mat-label>
-                        <mat-select formControlName="modeloMangueira">
+                        <mat-select formControlName="modelo">
                           <mat-option
                             *ngFor="let modelo of modelosMangueira"
                             [value]="modelo.value"
@@ -266,8 +267,7 @@
                             {{ modelo.viewValue }}
                           </mat-option>
                         </mat-select>
-                        <mat-error
-                          *ngIf="formMangueira.controls.modeloMangueira.invalid"
+                        <mat-error *ngIf="formMangueira.controls.modelo.invalid"
                           >Selecione o modelo da mangueira
                         </mat-error>
                       </mat-form-field>
@@ -276,13 +276,11 @@
                         <input
                           matInput
                           type="text"
-                          formControlName="tamanhoMangueira"
+                          formControlName="tamanho"
                           placeholder="Tamanho em metros"
                         />
                         <mat-error
-                          *ngIf="
-                            formMangueira.controls.tamanhoMangueira.invalid
-                          "
+                          *ngIf="formMangueira.controls.tamanho.invalid"
                           >Preencha o tamanho da mangueira
                         </mat-error>
                       </mat-form-field>
@@ -301,15 +299,14 @@
                         <input
                           matInput
                           [matDatepicker]="picker1"
-                          formControlName="validadeValvula"
+                          formControlName="validade"
                         />
                         <mat-datepicker-toggle
                           matSuffix
                           [for]="picker1"
                         ></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
-                        <mat-error
-                          *ngIf="formValvula.controls.validadeValvula.invalid"
+                        <mat-error *ngIf="formValvula.controls.validade.invalid"
                           >Preencha uma data válida
                         </mat-error>
                       </mat-form-field>
@@ -328,7 +325,7 @@
                         <input
                           matInput
                           [matDatepicker]="picker2"
-                          formControlName="validadeExtintor"
+                          formControlName="dataValidade"
                         />
                         <mat-datepicker-toggle
                           matSuffix
@@ -336,13 +333,13 @@
                         ></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
                         <mat-error
-                          *ngIf="formExtintor.controls.validadeExtintor.invalid"
+                          *ngIf="formExtintor.controls.dataValidade.invalid"
                           >Preencha uma data válida
                         </mat-error>
                       </mat-form-field>
                       <mat-form-field appearance="fill" class="input-campos">
                         <mat-label>Modelo</mat-label>
-                        <mat-select formControlName="modeloExtintor">
+                        <mat-select formControlName="modelo">
                           <mat-option
                             *ngFor="let modelo of modelosExtintor"
                             [value]="modelo.value"
@@ -350,8 +347,7 @@
                             {{ modelo.viewValue }}
                           </mat-option>
                         </mat-select>
-                        <mat-error
-                          *ngIf="formExtintor.controls.modeloExtintor.invalid"
+                        <mat-error *ngIf="formExtintor.controls.modelo.invalid"
                           >Selecione o modelo do extintor
                         </mat-error>
                       </mat-form-field>
@@ -370,13 +366,8 @@
                     <div class="campos-objeto extintor">
                       <mat-form-field appearance="fill" class="input-campos">
                         <mat-label>Peso</mat-label>
-                        <input
-                          matInput
-                          type="text"
-                          formControlName="pesoExtintor"
-                        />
-                        <mat-error
-                          *ngIf="formExtintor.controls.pesoExtintor.invalid"
+                        <input matInput type="text" formControlName="peso" />
+                        <mat-error *ngIf="formExtintor.controls.peso.invalid"
                           >Preencha o peso do extintor
                         </mat-error>
                       </mat-form-field>
@@ -385,10 +376,10 @@
                         <input
                           matInput
                           type="text"
-                          formControlName="anoExpecao"
+                          formControlName="anoInspecao"
                         />
                         <mat-error
-                          *ngIf="formExtintor.controls.pesoExtintor.invalid"
+                          *ngIf="formExtintor.controls.anoInspecao.invalid"
                           >Preencha o ano de expedição do extintor
                         </mat-error>
                       </mat-form-field>
@@ -407,7 +398,7 @@
                         <input
                           matInput
                           [matDatepicker]="picker3"
-                          formControlName="validadeHidrante"
+                          formControlName="validade"
                         />
                         <mat-datepicker-toggle
                           matSuffix
@@ -415,7 +406,7 @@
                         ></mat-datepicker-toggle>
                         <mat-datepicker #picker3></mat-datepicker>
                         <mat-error
-                          *ngIf="formHidrante.controls.validadeHidrante.invalid"
+                          *ngIf="formHidrante.controls.validade.invalid"
                           >Selecione a validade do hidrante
                         </mat-error>
                       </mat-form-field>
@@ -438,7 +429,7 @@
                         <input
                           matInput
                           [matDatepicker]="picker4"
-                          formControlName="ultimoTeste"
+                          formControlName="dataUltimoTeste"
                         />
                         <mat-datepicker-toggle
                           matSuffix
@@ -446,7 +437,7 @@
                         ></mat-datepicker-toggle>
                         <mat-datepicker #picker4></mat-datepicker>
                         <mat-error
-                          *ngIf="formHidrante.controls.ultimoTeste.invalid"
+                          *ngIf="formHidrante.controls.dataUltimoTeste.invalid"
                           >Selecione a data de último teste do hidrante
                         </mat-error>
                       </mat-form-field>
@@ -471,6 +462,7 @@
         </mat-tab-group>
         <div class="div-button">
           <button
+            type="reset"
             class="btn btn-danger"
             id="btn-cadastro-edificacao"
             *ngIf="!editar"
@@ -479,6 +471,7 @@
             Cadastrar
           </button>
           <button
+            type="reset"
             class="btn btn-danger"
             id="btn-salvar-edificacao"
             *ngIf="editar"
@@ -487,6 +480,7 @@
             Salvar
           </button>
           <button
+            type="reset"
             class="btn btn-danger"
             id="btn-deletar-edificacao"
             *ngIf="editar"

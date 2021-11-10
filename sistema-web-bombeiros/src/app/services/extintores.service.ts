@@ -11,6 +11,10 @@ export class ExtintoresService {
 
   constructor(private http: HttpClient) {}
 
+  async findByEdificacao(id: number) {
+    return this.http.get<Extintor[]>(`${this.url}/findByEdificacao/${id}`).toPromise();
+  }
+
   async create(extintor: Extintor): Promise<Extintor> {
     return this.http
       .post<Extintor>(this.url, extintor)

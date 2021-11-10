@@ -7,9 +7,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class MangueirasService {
-  url: string = `${environment.backendUrl}/mangueiras"`;
+  url: string = `${environment.backendUrl}/mangueiras`;
 
   constructor(private http: HttpClient) {}
+
+  async findByEdificacao(id: number) {
+    return this.http.get<Mangueira[]>(`${this.url}/findByEdificacao/${id}`).toPromise();
+  }
 
   async create(mangueira: Mangueira): Promise<Mangueira> {
     return this.http
