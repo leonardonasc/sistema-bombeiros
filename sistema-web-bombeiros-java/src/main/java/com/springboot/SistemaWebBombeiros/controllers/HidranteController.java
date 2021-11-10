@@ -15,6 +15,11 @@ public class HidranteController {
     @Autowired
     private HidranteRepository repositorio;
 
+    @GetMapping("/findByEdificacao/{id}")
+    public ResponseEntity<?> findByEdificacao(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(this.repositorio.findByEdificacao_Id(id));
+    }
+
     @GetMapping
     public ResponseEntity<?> list() {
         return ResponseEntity.ok(this.repositorio.findAll());

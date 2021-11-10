@@ -26,10 +26,12 @@ public class UsuarioController {
     public ResponseEntity<?> listByNome(@PathVariable("nome") String nome) {
         return ResponseEntity.ok(this.repositorio.findByNomeIgnoreCaseContaining(nome));
     }
+
     @GetMapping("findByEmail/{email}")
     public ResponseEntity<?> listByEmail(@PathVariable("email") String email) {
         return ResponseEntity.ok(this.repositorio.findByEmailIgnoreCaseContaining(email));
     }
+
     @GetMapping("/:id")
     public ResponseEntity<?> read(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(this.repositorio.findById(id));

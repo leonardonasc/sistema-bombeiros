@@ -21,7 +21,7 @@ public class DataGenerator {
                 usuario.setMatricula("admin");
                 usuario.setSenha(passwordEncoder.encode("admin"));
                 usuario.setEmail("leonardo@bombeiros.sc.com.br");
-                usuario.setPerfilAcesso("ADMINISTRADOR");
+                usuario.setPerfilAcesso("Administrador");
                 usuarioRepository.save(usuario);
                 System.out.println("Id usuario: " + usuario.getId());
             }

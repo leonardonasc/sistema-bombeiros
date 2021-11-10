@@ -19,7 +19,13 @@ public class ExtintorController {
     public ResponseEntity<?> list() {
         return ResponseEntity.ok(this.repositorio.findAll());
     }
-    @GetMapping("/:id")
+
+    @GetMapping("/findByEdificacao/{id}")
+    public ResponseEntity<?> findByEdificacao(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(this.repositorio.findByEdificacao_Id(id));
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<?> read(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(this.repositorio.findById(id));
     }
@@ -27,7 +33,7 @@ public class ExtintorController {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody() Extintor extintor) {
         System.out.println(extintor.getEdificacao());
-        Extintor extintorCriado = this.repositorio.save(JSON.stringify(extintor));
+        Extintor extintorCriado = this.repositorio.save(extintor);
         return new ResponseEntity<>(extintorCriado, HttpStatus.CREATED);
     }
 
