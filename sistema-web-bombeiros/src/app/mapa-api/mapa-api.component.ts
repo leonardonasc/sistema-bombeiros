@@ -1,3 +1,12 @@
+import { Extintor } from './../models/Extintor';
+import { Valvula } from './../models/Valvula';
+import { Hidrante } from './../models/Hidrante';
+import { Mangueira } from './../models/Mangueira';
+import { Edificacao } from './../models/Edificacao';
+import { ExtintoresService } from './../services/extintores.service';
+import { ValvulasService } from './../services/valvulas.service';
+import { HidrantesService } from './../services/hidrantes.service';
+import { MangueirasService } from './../services/mangueiras.service';
 import { NominatimService } from './../services/nominatim.service';
 import { EdificacoesService } from './../services/edificacoes.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -23,85 +32,96 @@ export class MapaApiComponent implements OnInit {
 
   constructor(
     private edificacoesService: EdificacoesService,
-    nominatimService: NominatimService
+    private mangueirasService: MangueirasService,
+    private hidrantesService: HidrantesService,
+    private valvulasService: ValvulasService,
+    private extintoresService: ExtintoresService
   ) {}
   pontos: any;
 
   async ngAfterViewInit() {
     this.pontos = await this.edificacoesService.list();
+    const mangueiras = await this.mangueirasService.list();
+    const hidrantes = await this.hidrantesService.list();
+    const valvulas = await this.valvulasService.list();
+    const extintores = await this.extintoresService.list();
+    this.pontos.forEach((edificacao: Edificacao) => {
+      const data = [
+        ...mangueiras
+          .filter((m: Mangueira) => m.edificacao.id! == edificacao.id!)
+          .map((m: Mangueira) => new Date(m.validade)),
+        ...hidrantes
+          .filter((h: Hidrante) => h.edificacao.id! == edificacao.id!)
+          .map((h: Hidrante) => new Date(h.validade)),
+        ...valvulas
+          .filter((v: Valvula) => v.edificacao.id! == edificacao.id!)
+          .map((v: Valvula) => new Date(v.validade)),
+        ...extintores
+          .filter((e: Extintor) => e.edificacao.id! == edificacao.id!)
+          .map((e: Extintor) => new Date(e.dataValidade)),
+      ].sort()[0];
+      const hoje = new Date();
+      if(data < new Date(hoje.setDate(hoje.getDate() + 30))) {
+        edificacao.nivel = 2;
+      } else if (data < new Date(hoje.setDate(hoje.getDate() + 60))) {
+        edificacao.nivel = 1;
+      } else {
+        edificacao.nivel = 0;
+      }
+    });
+    this.popup = new Overlay({element: this.element.nativeElement})
     const map = this.criarMapa();
-    // const cluster = this.criarCluster();
-    // map.addLayer(cluster);
-    // this.ouvirClickMapa(map, cluster);
     this.addCluster(map);
   }
 
   async ngOnInit() {}
-  private ouvirClickMapa(evt: any, map: Map, cluster: any) {
-    map.on('click', (evento) => {
-      this.display = 'none';
-      cluster.getFeatures(evento.pixel).then((clickedFeatures: any) => {
-        if (clickedFeatures.length) {
-          // Get clustered Coordinates
-          const features = clickedFeatures[0].get('features');
-          if (features.length > 1) {
-            const extent = boundingExtent(
-              features.map((r: any) => r.getGeometry().getCoordinates())
-            );
-            map
-              .getView()
-              .fit(extent, { duration: 1000, padding: [50, 50, 50, 50] });
-          } else if (features.length == 1) {
-            this.insertOverlay(evt, features[0].get('data'));
-          }
-        }
-      });
-    });
-  }
+  // private ouvirClickMapa(evt: any, map: Map, cluster: any) {
+  //   map.on('click', (evento) => {
+  //     this.display = 'none';
+  //     cluster.getFeatures(evento.pixel).then((clickedFeatures: any) => {
+  //       if (clickedFeatures.length) {
+  //         // Get clustered Coordinates
+  //         const features = clickedFeatures[0].get('features');
+  //         if (features.length > 1) {
+  //           const extent = boundingExtent(
+  //             features.map((r: any) => r.getGeometry().getCoordinates())
+  //           );
+  //           map
+  //             .getView()
+  //             .fit(extent, { duration: 1000, padding: [50, 50, 50, 50] });
+  //         } else if (features.length == 1) {
+  //           this.insertOverlay(evt, features[0].get('data'));
+  //         }
+  //       }
+  //     });
+  //   });
+  // }
 
   private addCluster(map: Map) {
-    const features: any[] = [];
-    for (let i = 0; i < this.pontos.length; ++i) {
-      const ponto = Proj.fromLonLat([
-        this.pontos[i].longitude,
-        this.pontos[i].latitude,
-      ]);
-      features[i] = new Feature(new Point(ponto));
-    }
-    const clustersR = this.createCluster(
-      features.slice(0, features.length / 3),
-      '#f00'
-    );
-    const clustersG = this.createCluster(
-      features.slice(features.length / 3, (2 * features.length) / 3),
-      '#0f0'
-    );
-    const clustersB = this.createCluster(
-      features.slice((2 * features.length) / 3, features.length),
-      '#00f'
-    );
-    map.addLayer(clustersR);
-    map.addLayer(clustersG);
-    map.addLayer(clustersB);
+    let features: any[] = [];
+    const colors = ['#fcba03', '#fc9803', '#fc0303'];
+    for (let j = 0; j < 3; ++j) {
+      features = [];
+      this.pontos
+        .filter((p: any) => p.nivel == j)
+        .forEach((p: any) => {
+          const feature = new Feature(new Point(Proj.fromLonLat([p.longitude, p.latitude])))
+          feature.set("data", p);
+          features.push(feature);
+        });
 
-    map.on('click', (e) => {
-      this.display = 'none';
-      clustersR
-        .getFeatures(e.pixel)
-        .then((clickedFeatures: any) =>
-          this.clickCluster(e, clickedFeatures, map)
-        );
-      clustersG
-        .getFeatures(e.pixel)
-        .then((clickedFeatures: any) =>
-          this.clickCluster(e, clickedFeatures, map)
-        );
-      clustersB
-        .getFeatures(e.pixel)
-        .then((clickedFeatures: any) =>
-          this.clickCluster(e, clickedFeatures, map)
-        );
-    });
+      const clustersR = this.createCluster(features, colors[j]);
+      map.addLayer(clustersR);
+
+      map.on('click', (e) => {
+        this.display = 'none';
+        clustersR
+          .getFeatures(e.pixel)
+          .then((clickedFeatures: any) =>
+            this.clickCluster(e, clickedFeatures, map)
+          );
+      });
+    }
   }
 
   private clickCluster(evt: any, clickedFeatures: any, map: Map) {
@@ -241,4 +261,5 @@ export class MapaApiComponent implements OnInit {
     element.innerHTML = `<div><span>Nome: ${data.nome}</span><br><span>Rua: ${data.endereco}</span><br><span>Cep: ${data.cep}</span><br><span>Telefone: ${data.telefone1}</span></div>`;
     this.popup.setPosition(coordinate);
   }
+
 }

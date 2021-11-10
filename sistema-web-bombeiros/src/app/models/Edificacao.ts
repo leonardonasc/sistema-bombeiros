@@ -16,4 +16,5 @@ export interface Edificacao {
   qtdBotijao: number;
   longitude: string;
   latitude: string;
+  nivel?: number;
 }
