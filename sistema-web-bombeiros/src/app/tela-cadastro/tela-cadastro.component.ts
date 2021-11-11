@@ -61,7 +61,7 @@ export class TelaCadastroComponent implements OnInit {
     private extintoresService: ExtintoresService,
     private hidrantesService: HidrantesService,
     private mangueirasService: MangueirasService,
-    private valvulasServies: ValvulasService,
+    private valvulasService: ValvulasService,
     private nominatimService: NominatimService
   ) {}
 
@@ -160,7 +160,7 @@ export class TelaCadastroComponent implements OnInit {
       const cons = await this.extintoresService.create(extintor);
       await this.hidrantesService.create(hidrante);
       await this.mangueirasService.create(mangueira);
-      await this.valvulasServies.create(valvula);
+      await this.valvulasService.create(valvula);
       // window.location.reload();
     }
   }
@@ -176,7 +176,7 @@ export class TelaCadastroComponent implements OnInit {
     if (confirm("Deseja realmente excluir o cadastro?")) {
       await this.edificacoesService.delete(this.formGroup.controls.id.value);
       await this.mangueirasService.delete(this.formMangueira.controls.id.value);
-      await this.valvulasServies.delete(this.formValvula.controls.id.value);
+      await this.valvulasService.delete(this.formValvula.controls.id.value);
       await this.extintoresService.delete(this.formExtintor.controls.id.value);
       await this.hidrantesService.delete(this.formHidrante.controls.id.value);
       this.editar = false;
@@ -187,7 +187,7 @@ export class TelaCadastroComponent implements OnInit {
   async carregaNaTela(row: any) {
     this.editar = true;
     const mangueiraFind = await this.mangueirasService.findByEdificacao(row.id);
-    const valvulaFind = await this.valvulasServies.findByEdificacao(row.id);
+    const valvulaFind = await this.valvulasService.findByEdificacao(row.id);
     const hidranteFind = await this.hidrantesService.findByEdificacao(row.id);
     const extintorFind = await this.extintoresService.findByEdificacao(row.id);
 

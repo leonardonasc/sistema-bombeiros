@@ -7,7 +7,6 @@ import { ExtintoresService } from './../services/extintores.service';
 import { ValvulasService } from './../services/valvulas.service';
 import { HidrantesService } from './../services/hidrantes.service';
 import { MangueirasService } from './../services/mangueiras.service';
-import { NominatimService } from './../services/nominatim.service';
 import { EdificacoesService } from './../services/edificacoes.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Feature, View } from 'ol';
@@ -61,15 +60,16 @@ export class MapaApiComponent implements OnInit {
           .map((e: Extintor) => new Date(e.dataValidade)),
       ].sort()[0];
       const hoje = new Date();
-      if(data < new Date(hoje.setDate(hoje.getDate() + 30))) {
+      console.log(new Date(hoje.setDate(hoje.getDate() + 30)))
+      if (data < new Date(hoje.setDate(hoje.getDate() + 30))) {
         edificacao.nivel = 2;
-      } else if (data < new Date(hoje.setDate(hoje.getDate() + 60))) {
+      } else if (data > new Date(hoje.setDate(hoje.getDate() + 30)) && data < new Date(hoje.setDate(hoje.getDate() + 60))) {
         edificacao.nivel = 1;
       } else {
         edificacao.nivel = 0;
       }
     });
-    this.popup = new Overlay({element: this.element.nativeElement})
+    this.popup = new Overlay({ element: this.element.nativeElement });
     const map = this.criarMapa();
     this.addCluster(map);
   }
@@ -99,14 +99,16 @@ export class MapaApiComponent implements OnInit {
 
   private addCluster(map: Map) {
     let features: any[] = [];
-    const colors = ['#fcba03', '#fc9803', '#fc0303'];
-    for (let j = 0; j < 3; ++j) {
+    const colors = ['#f2e718', '#ffa719', '#fc0303'];
+    for (let j = 0; j < 3; j++) {
       features = [];
       this.pontos
         .filter((p: any) => p.nivel == j)
         .forEach((p: any) => {
-          const feature = new Feature(new Point(Proj.fromLonLat([p.longitude, p.latitude])))
-          feature.set("data", p);
+          const feature = new Feature(
+            new Point(Proj.fromLonLat([p.longitude, p.latitude]))
+          );
+          feature.set('data', p);
           features.push(feature);
         });
 
@@ -159,58 +161,6 @@ export class MapaApiComponent implements OnInit {
     return map;
   }
 
-  private criarCluster() {
-    const features: any[] = [];
-    for (let i = 0; i < this.pontos.length; ++i) {
-      const ponto = Proj.fromLonLat([
-        this.pontos[i].longitude,
-        this.pontos[i].latitude,
-      ]);
-      features[i] = new Feature(new Point(ponto));
-    }
-
-    const source = new VectorSource({
-      features: features,
-    });
-
-    const clusterSource = new Cluster({
-      distance: 80,
-      source: source,
-    });
-
-    const styleCache: any = {};
-    const clusters = new VectorLayer({
-      source: clusterSource,
-      style: function (feature) {
-        const size = feature.get('features').length;
-        let style = styleCache[size];
-        if (!style) {
-          style = new Style({
-            image: new CircleStyle({
-              radius: 15,
-              stroke: new Stroke({
-                color: '#fff',
-              }),
-              fill: new Fill({
-                color: '#DC3545',
-              }),
-            }),
-            text: new Text({
-              text: size.toString(),
-              fill: new Fill({
-                color: '#fff',
-              }),
-            }),
-          });
-          styleCache[size] = style;
-        }
-        return style;
-      },
-    });
-
-    return clusters;
-  }
-
   private createCluster(features: any, color: string) {
     const source = new VectorSource({
       features,
@@ -231,9 +181,9 @@ export class MapaApiComponent implements OnInit {
         if (!style) {
           style = new Style({
             image: new CircleStyle({
-              radius: 10,
+              radius: 15,
               stroke: new Stroke({
-                color: '#fff',
+                color: '#000',
               }),
               fill: new Fill({
                 color,
@@ -242,8 +192,9 @@ export class MapaApiComponent implements OnInit {
             text: new Text({
               text: size.toString(),
               fill: new Fill({
-                color: '#fff',
+                color: '#000',
               }),
+              font: '15px sans-serif',
             }),
           });
           styleCache[size] = style;
@@ -261,5 +212,4 @@ export class MapaApiComponent implements OnInit {
     element.innerHTML = `<div><span>Nome: ${data.nome}</span><br><span>Rua: ${data.endereco}</span><br><span>Cep: ${data.cep}</span><br><span>Telefone: ${data.telefone1}</span></div>`;
     this.popup.setPosition(coordinate);
   }
-
 }
