@@ -19,12 +19,12 @@ const routes: Routes = [
       {
         path: 'cadastros',
         component: TelaCadastroComponent,
-        // canActivate: [AdminGuard],
+        canActivate: [AdminGuard],
       },
       {
         path: 'usuarios',
         component: TelaUsuarioComponent,
-        // canActivate: [AdminGuard],
+        canActivate: [AdminGuard],
       },
       { path: 'relatorios', component: TelaRelatoriosComponent },
       // { path: 'login', component: TelaLoginComponent },

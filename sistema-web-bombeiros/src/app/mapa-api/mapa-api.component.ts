@@ -60,7 +60,7 @@ export class MapaApiComponent implements OnInit {
           .map((e: Extintor) => new Date(e.dataValidade)),
       ].sort()[0];
       const hoje = new Date();
-      console.log(new Date(hoje.setDate(hoje.getDate() + 30)))
+      let hojeMais30 = new Date(hoje.setDate(hoje.getDate() + 30))
       if (data < new Date(hoje.setDate(hoje.getDate() + 30))) {
         edificacao.nivel = 2;
       } else if (data > new Date(hoje.setDate(hoje.getDate() + 30)) && data < new Date(hoje.setDate(hoje.getDate() + 60))) {
@@ -75,27 +75,6 @@ export class MapaApiComponent implements OnInit {
   }
 
   async ngOnInit() {}
-  // private ouvirClickMapa(evt: any, map: Map, cluster: any) {
-  //   map.on('click', (evento) => {
-  //     this.display = 'none';
-  //     cluster.getFeatures(evento.pixel).then((clickedFeatures: any) => {
-  //       if (clickedFeatures.length) {
-  //         // Get clustered Coordinates
-  //         const features = clickedFeatures[0].get('features');
-  //         if (features.length > 1) {
-  //           const extent = boundingExtent(
-  //             features.map((r: any) => r.getGeometry().getCoordinates())
-  //           );
-  //           map
-  //             .getView()
-  //             .fit(extent, { duration: 1000, padding: [50, 50, 50, 50] });
-  //         } else if (features.length == 1) {
-  //           this.insertOverlay(evt, features[0].get('data'));
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
 
   private addCluster(map: Map) {
     let features: any[] = [];
@@ -156,6 +135,7 @@ export class MapaApiComponent implements OnInit {
         center: Proj.fromLonLat([-48.635454, -27.617852]),
         zoom: 14,
       }),
+      overlays: [this.popup],
     });
 
     return map;

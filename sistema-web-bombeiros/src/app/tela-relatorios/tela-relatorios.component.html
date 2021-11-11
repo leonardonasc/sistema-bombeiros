@@ -1,8 +1,8 @@
 <div class="container-relatorios">
-  <div>
+  <div class="header">
     <h1>Relatórios</h1>
   </div>
-  <div class="relatorio">
+  <div class="filtro">
     <mat-form-field appearance="fill" class="input-filtro">
       <mat-label>Filtro</mat-label>
       <input
@@ -12,7 +12,10 @@
         #input
       />
     </mat-form-field>
+  </div>
+  <div class="relatorio">
     <table
+      #relatorio
       mat-table
       [dataSource]="dataSource"
       class="mat-elevation-z8 demo-table tabela"
@@ -32,7 +35,7 @@
       <!-- Nome de Guerra Column -->
       <ng-container matColumnDef="telefone1">
         <th mat-header-cell *matHeaderCellDef>Telefone</th>
-        <td mat-cell *matCellDef="let element">{{ element.telefone1 }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.telefone }}</td>
       </ng-container>
 
       <!-- E-mail Column -->
@@ -47,7 +50,7 @@
       <ng-container matColumnDef="validadeMangueira">
         <th mat-header-cell *matHeaderCellDef>Validade Mangueira</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.validadeMangueira }}
+          {{ element.validadeMangueira | date: "dd/MM/yyyy" }}
         </td>
       </ng-container>
 
@@ -55,7 +58,7 @@
       <ng-container matColumnDef="validadeExtintor">
         <th mat-header-cell *matHeaderCellDef>Validade Extintor</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.validadeExtintor }}
+          {{ element.validadeExtintor | date: "dd/MM/yyyy" }}
         </td>
       </ng-container>
 
@@ -63,7 +66,7 @@
       <ng-container matColumnDef="validadeValvula">
         <th mat-header-cell *matHeaderCellDef>Validade Válvula</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.validadeValvula }}
+          {{ element.validadeValvula | date: "dd/MM/yyyy" }}
         </td>
       </ng-container>
 
@@ -71,7 +74,7 @@
       <ng-container matColumnDef="validadeHidrante">
         <th mat-header-cell *matHeaderCellDef>Validade Hidrante</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.validadeHidrante }}
+          {{ element.validadeHidrante | date: "dd/MM/yyyy" }}
         </td>
       </ng-container>
 
@@ -79,7 +82,6 @@
       <tr
         mat-row
         *matRowDef="let row; columns: displayedColumns"
-        (click)="carregarNaTela(row)"
       ></tr>
     </table>
     <mat-paginator
@@ -92,4 +94,5 @@
     >
     </mat-paginator>
   </div>
+  <button mat-raised-button (click)="exportAsExcel()">Exportar</button>
 </div>
