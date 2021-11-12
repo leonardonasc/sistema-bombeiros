@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import JwtRequest from '../models/JwtRequest';
+import { JwtRequest } from '../models/JwtRequest';
 import { Token } from './../models/Token';
 import { Usuario } from './../models/Usuario';
 
@@ -14,9 +14,7 @@ export class AuthService {
   url = `${environment.backendUrl}/login`;
 
   async createToken(request: JwtRequest) {
-    const authentication = await this.http
-      .post<Token>(this.url, request)
-      .toPromise();
+    const authentication = await this.http.post<Token>(this.url, request).toPromise();
     this.storeToken(authentication);
     this.saveUser(authentication.user);
 
@@ -24,15 +22,15 @@ export class AuthService {
   }
 
   isAdmin(user: Usuario) {
-    return user.perfilAcesso == 'ADMIN';
+    return user.perfilAcesso.toUpperCase() == 'ADMINISTRADOR';
   }
 
   isMonitor(user: Usuario) {
-    return user.perfilAcesso == 'MONITORAMENTO';
+    return user.perfilAcesso.toUpperCase() == 'MONITORAMENTO';
   }
 
   isCobom(user: Usuario) {
-    return user.perfilAcesso == 'COBOM';
+    return user.perfilAcesso.toUpperCase() == 'COBOM';
   }
 
   isLogged() {

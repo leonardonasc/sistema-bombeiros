@@ -1,5 +1,6 @@
+import { Edificacao } from './Edificacao';
 export interface Valvula {
   id?: number;
   validade: string;
-  morador: number;
+  edificacao: Edificacao;
 }

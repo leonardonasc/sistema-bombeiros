@@ -3,7 +3,7 @@ package com.springboot.sistemawebbombeiros.models;
 import javax.persistence.*;
 
 @Entity
-public class Morador {
+public class Edificacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -36,10 +36,10 @@ public class Morador {
     private String longitude;
     private String latitude;
     
-    public Morador() {
+    public Edificacao() {
     }
 
-    public Morador(Integer id, String nome, String cpf, String email, String telefone1, String telefone2, String cep,
+    public Edificacao(Integer id, String nome, String cpf, String email, String telefone1, String telefone2, String cep,
             String endereco, String numeroEndereco, String bairro, String cidade, String tipoEdificacao,
             Integer numeroMoradores, String temBotijao, Integer qtdBotijao, String longitude, String latitude) {
         this.id = id;

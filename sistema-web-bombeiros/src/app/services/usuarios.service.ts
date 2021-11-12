@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../models/Usuario';
@@ -7,7 +7,7 @@ import { Usuario } from '../models/Usuario';
   providedIn: 'root',
 })
 export class UsuariosService {
-  url: string = `${environment.urlApi}/usuarios`;
+  url: string = `${environment.backendUrl}/usuarios`;
 
   constructor(private http: HttpClient) {}
 

@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import {
   animate,
   state,
@@ -6,6 +7,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-componente-menu',
@@ -38,7 +40,7 @@ export class ComponenteMenuComponent implements OnInit {
   slideInState = 'in';
   isOpen = true;
 
-  constructor() {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     if (this.windowWidth > 670){
@@ -48,5 +50,10 @@ export class ComponenteMenuComponent implements OnInit {
 
   abrirMenu() {
     this.isOpen = !this.isOpen;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

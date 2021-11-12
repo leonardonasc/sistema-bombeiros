@@ -7,9 +7,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class HidrantesService {
-  url: string = `${environment.urlApi}/hidrantes"`;
+  url: string = `${environment.backendUrl}/hidrantes`;
 
   constructor(private http: HttpClient) {}
+
+  async findByEdificacao(id: number) {
+    return this.http.get<Hidrante[]>(`${this.url}/findByEdificacao/${id}`).toPromise();
+  }
 
   async create(hidrante: Hidrante): Promise<Hidrante> {
     return this.http

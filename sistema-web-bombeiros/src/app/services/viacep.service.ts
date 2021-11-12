@@ -10,7 +10,7 @@ export class ViacepService {
 
   async read(cep: string): Promise<any>{
     const endereco = await this.http.get(`${this.url}/${cep}/json`).toPromise();
-    console.log(endereco);
+    // console.log(endereco);
     return endereco;
   }
 }

@@ -13,17 +13,17 @@ public class Mangueira {
     private String tamanho;    
     @ManyToOne
     @JoinColumn(nullable=false)
-    private Morador morador;
+    private Edificacao edificacao;
     
     public Mangueira() {
     }   
 
-    public Mangueira(Integer id, String modelo, String validade, String tamanho, Morador morador) {
+    public Mangueira(Integer id, String modelo, String validade, String tamanho, Edificacao edificacao) {
         this.id = id;
         this.modelo = modelo;
         this.validade = validade;
         this.tamanho = tamanho;
-        this.morador = morador;
+        this.edificacao = edificacao;
     }
 
     public Integer getId() {
@@ -51,12 +51,12 @@ public class Mangueira {
         this.tamanho = tamanho;
     }
 
-    public Morador getMorador() {
-        return morador;
+    public Edificacao getEdificacao() {
+        return edificacao;
     }
 
-    public void setMorador(Morador morador) {
-        this.morador = morador;
+    public void setEdificacao(Edificacao edificacao) {
+        this.edificacao = edificacao;
     }
 
     

@@ -6,16 +6,10 @@ import com.springboot.sistemawebbombeiros.repositories.ExtintorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("extintores")
 public class ExtintorController {
     @Autowired
@@ -25,15 +19,22 @@ public class ExtintorController {
     public ResponseEntity<?> list() {
         return ResponseEntity.ok(this.repositorio.findAll());
     }
-    @GetMapping("/:id")
+
+    @GetMapping("/findByEdificacao/{id}")
+    public ResponseEntity<?> findByEdificacao(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(this.repositorio.findByEdificacao_Id(id));
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<?> read(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(this.repositorio.findById(id));
     }
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody() Extintor extintor) {
-        Extintor usuarioCriado = this.repositorio.save(extintor);
-        return new ResponseEntity<>(usuarioCriado, HttpStatus.CREATED);
+        System.out.println(extintor.getEdificacao());
+        Extintor extintorCriado = this.repositorio.save(extintor);
+        return new ResponseEntity<>(extintorCriado, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

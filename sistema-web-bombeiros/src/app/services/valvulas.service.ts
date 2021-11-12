@@ -7,9 +7,13 @@ import { Valvula } from '../models/Valvula';
   providedIn: 'root'
 })
 export class ValvulasService {
-  url: string = `${environment.urlApi}/valvulas"`;
+  url: string = `${environment.backendUrl}/valvulas`;
 
   constructor(private http: HttpClient) {}
+
+  async findByEdificacao(id: number) {
+    return this.http.get<Valvula[]>(`${this.url}/findByEdificacao/${id}`).toPromise();
+  }
 
   async create(valvula: Valvula): Promise<Valvula> {
     return this.http

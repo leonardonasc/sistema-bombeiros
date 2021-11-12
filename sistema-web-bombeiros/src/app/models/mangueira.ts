@@ -1,7 +1,8 @@
+import { Edificacao } from './Edificacao';
 export interface Mangueira {
   id?: number;
   modelo: string;
   validade: string;
   tamanho: string;
-  morador: number;
+  edificacao: Edificacao;
 }

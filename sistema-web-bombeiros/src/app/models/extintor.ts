@@ -1,3 +1,4 @@
+import { Edificacao } from './Edificacao';
 export interface Extintor {
   id?: number;
   dataValidade: string;
@@ -5,5 +6,5 @@ export interface Extintor {
   seloInmetro: string;
   peso: number;
   anoInspecao: string;
-  morador: number;
+  edificacao: Edificacao;
 }
