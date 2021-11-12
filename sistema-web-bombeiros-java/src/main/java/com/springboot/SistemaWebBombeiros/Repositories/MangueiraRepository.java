@@ -1,4 +1,5 @@
 package com.springboot.sistemawebbombeiros.repositories;
+import com.springboot.sistemawebbombeiros.models.Edificacao;
 import com.springboot.sistemawebbombeiros.models.Mangueira;
 
 import org.springframework.data.repository.CrudRepository;
@@ -10,4 +11,6 @@ import java.util.List;
 public interface MangueiraRepository extends CrudRepository<Mangueira, Integer>{
 
     public List<Mangueira> findByEdificacao_Id(Integer id);
+
+    public Mangueira findFirstByEdificacao(Edificacao edificacao);
 }

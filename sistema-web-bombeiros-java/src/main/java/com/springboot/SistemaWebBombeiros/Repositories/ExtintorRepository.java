@@ -1,6 +1,7 @@
 package com.springboot.sistemawebbombeiros.repositories;
 import java.util.List;
 
+import com.springboot.sistemawebbombeiros.models.Edificacao;
 import com.springboot.sistemawebbombeiros.models.Extintor;
 
 import org.springframework.data.repository.CrudRepository;
@@ -15,6 +16,10 @@ public interface ExtintorRepository extends CrudRepository<Extintor, Integer> {
     public List<Extintor> findByModelo(String modelo);
     public List<Extintor> findByAnoInspecao(String anoInspecao);
     public List<Extintor> findByEdificacao_Id(Integer id);
+    public List<Extintor> findByEdificacao(Edificacao edificacao);
+
+    public Extintor findFirstByEdificacao(Edificacao edificacao);
+
 }
 
 

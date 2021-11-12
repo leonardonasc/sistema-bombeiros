@@ -1,4 +1,5 @@
 package com.springboot.sistemawebbombeiros.repositories;
+import com.springboot.sistemawebbombeiros.models.Edificacao;
 import com.springboot.sistemawebbombeiros.models.Valvula;
 
 import org.springframework.data.repository.CrudRepository;
@@ -10,4 +11,5 @@ import java.util.List;
 public interface ValvulaRepository extends CrudRepository<Valvula, Integer> {
 
     public List<Valvula> findByEdificacao_Id(Integer id);
+    public Valvula findFirstByEdificacao(Edificacao edificacao);
 }
